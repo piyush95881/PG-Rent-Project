@@ -1,7 +1,8 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
-from app import db
+from extensions import db
 from models import User
+from datetime import timedelta
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -28,16 +29,21 @@ def signup():
 # LOGIN with JWT
 @auth_bp.route('/login', methods=['POST'])
 def login():
-    data = request.get_json()
+    data = request.get_json(silent=True) or {}
     email = data.get('email')
     password = data.get('password')
+
+    if not email or not password:
+        return jsonify({'message': 'Email and password required'}), 400
 
     user = User.query.filter_by(email=email).first()
 
     if user and user.check_password(password):
-        # Create JWT token with user ID as identity
-        access_token = create_access_token(identity=user.id)
-        return jsonify({'access_token': access_token}), 200
+        access_token = create_access_token(
+            identity=str(user.id),
+            expires_delta=timedelta(hours=1)
+        )
+        return jsonify(access_token=access_token, token_type='Bearer'), 200
 
     return jsonify({'message': 'Invalid email or password'}), 401
 

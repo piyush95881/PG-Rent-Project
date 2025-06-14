@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <title>Rental Agreement</title>
+  <style>
+    body { font-family: 'Arial',serif; margin: 20px; }
+    h1 { text-align: center; }
+    p, li { font-size: 14px; line-height: 1.6; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid black; padding: 5px; text-align: left; }
+  </style>
+</head>
+<body>
+  <h1>RENTAL AGREEMENT</h1>
+
+  <p>This RENTAL AGREEMENT is executed at {{ property.city | e }}, {{ property.state | e }} on {{ terms.start_date | e }}.</p>
+
+  <p>Between <strong>{{ owner.name | e }}</strong>, residing at {{ owner.address | e }} and
+     <strong>{{ tenant.name | e }}</strong>, residing at {{ tenant.address | e }}.</p>
+
+  <ol>
+    <li>The rent is ₹{{ terms.rent | e }} per month payable on or before the 10th.</li>
+    <li>Security deposit: ₹{{ terms.security_deposit | e }}</li>
+    <li>Rental period: From {{ terms.start_date | e }} to {{ terms.end_date | e }}</li>
+    <!-- You can add more clauses here -->
+  </ol>
+
+  {% if annexures %}
+  <h3>Annexure-I</h3>
+  <table>
+    <tr><th>Item Name</th><th>Item Count</th></tr>
+    {% for item in annexures %}
+      <tr>
+        <td>{{ item.name | e }}</td>
+        <td>{{ item.count | e }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+    <p>No annexures provided.</p>
+  {% endif %}
+
+  <br><br>
+  <table width="100%">
+    <tr>
+      <td><strong>Owner Signature:</strong> ___________________</td>
+      <td><strong>Tenant Signature:</strong> ___________________</td>
+    </tr>
+  </table>
+</body>
+</html>

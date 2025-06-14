@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+
+# Environment
+.env
+venv/
+.venv/
+
+# IDEs
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+
+# App files
+agreements/*.pdf
