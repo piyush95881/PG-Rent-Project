@@ -4,10 +4,12 @@ from dotenv import load_dotenv
 from flask import Flask, render_template, jsonify
 from flask_cors import CORS
 from flask_jwt_extended.exceptions import JWTExtendedException
+from flask_migrate import Migrate
 
 from config import Config
 from routes.auth import auth_bp
 from routes.agreemant import agreement_bp
+from routes.profile import user_bp
 from routes.search import search_bp
 from extensions import mail,db,jwt
 from routes.upload import upload_bp
@@ -23,6 +25,8 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
     CORS(app, supports_credentials=True)
+
+    migrate = Migrate(app, db)
 
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -45,6 +49,7 @@ def create_app():
     app.register_blueprint(agreement_bp, url_prefix='/api/agreement')
     app.register_blueprint(search_bp, url_prefix='/api/search')
     app.register_blueprint(upload_bp, url_prefix='/api/upload')
+    app.register_blueprint(user_bp,url_prefix='/api/user')
 
     @app.errorhandler(JWTExtendedException)
     def handle_jwt_error(e):
