@@ -8,7 +8,10 @@ from flask_jwt_extended.exceptions import JWTExtendedException
 from config import Config
 from routes.auth import auth_bp
 from routes.agreemant import agreement_bp
+from routes.search import search_bp
 from extensions import mail,db,jwt
+from routes.upload import upload_bp
+
 # Initialize extensions directly
 
 
@@ -40,6 +43,8 @@ def create_app():
 
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(agreement_bp, url_prefix='/api/agreement')
+    app.register_blueprint(search_bp, url_prefix='/api/search')
+    app.register_blueprint(upload_bp, url_prefix='/api/upload')
 
     @app.errorhandler(JWTExtendedException)
     def handle_jwt_error(e):
