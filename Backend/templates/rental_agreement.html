@@ -1,51 +1,133 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Rental Agreement</title>
   <style>
-    body { font-family: 'Arial',serif; margin: 20px; }
-    h1 { text-align: center; }
-    p, li { font-size: 14px; line-height: 1.6; }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    th, td { border: 1px solid black; padding: 5px; text-align: left; }
+    body {
+      font-family: 'Georgia', serif;
+      margin: 40px;
+      line-height: 1.6;
+      color: #2c2c2c;
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+      color: #1f2937;
+      margin-bottom: 0;
+    }
+
+    p, li {
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    ol {
+      margin-left: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid #333;
+      padding: 8px;
+      text-align: left;
+    }
+
+    .signature-section {
+      margin-top: 60px;
+    }
+
+    .signature-box {
+      width: 45%;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .signature-line {
+      border-top: 1px solid #000;
+      width: 80%;
+      margin: 40px 0 5px;
+    }
+
+    .section-title {
+      margin-top: 30px;
+      font-weight: bold;
+      font-size: 16px;
+      text-decoration: underline;
+    }
+
+    .text-center {
+      text-align: center;
+    }
   </style>
 </head>
 <body>
+
   <h1>RENTAL AGREEMENT</h1>
+  <p class="text-center"><em>This Agreement is made on {{ terms.start_date | e }} at {{ property.city | e }}, {{ property.state | e }}</em></p>
 
-  <p>This RENTAL AGREEMENT is executed at {{ property.city | e }}, {{ property.state | e }} on {{ terms.start_date | e }}.</p>
+  <p>This Rental Agreement is entered into between:</p>
 
-  <p>Between <strong>{{ owner.name | e }}</strong>, residing at {{ owner.address | e }} and
-     <strong>{{ tenant.name | e }}</strong>, residing at {{ tenant.address | e }}.</p>
+  <p><strong>{{ owner.name | e }}</strong>, residing at {{ owner.address | e }}, hereinafter referred to as the <strong>‘Owner’</strong></p>
+  <p>AND</p>
+  <p><strong>{{ tenant.name | e }}</strong>, residing at {{ tenant.address | e }}, hereinafter referred to as the <strong>‘Tenant’</strong>.</p>
+
+  <p>Both parties hereby agree to abide by the following terms and conditions:</p>
 
   <ol>
-    <li>The rent is ₹{{ terms.rent | e }} per month payable on or before the 10th.</li>
-    <li>Security deposit: ₹{{ terms.security_deposit | e }}</li>
-    <li>Rental period: From {{ terms.start_date | e }} to {{ terms.end_date | e }}</li>
-    <!-- You can add more clauses here -->
+    <li><strong>Rent Amount:</strong> The monthly rent shall be ₹{{ terms.rent | e }}, payable in advance on or before the 10th of each month.</li>
+    <li><strong>Security Deposit:</strong> The Tenant agrees to pay a refundable security deposit of ₹{{ terms.security_deposit | e }} at the time of signing this agreement.</li>
+    <li><strong>Lease Duration:</strong> This lease shall remain in force from {{ terms.start_date | e }} to {{ terms.end_date | e }}.</li>
+    <li><strong>Utilities:</strong> Electricity and water charges shall be borne by the Tenant as per actual usage. Electricity charges shall be ₹{{ terms.electricity_rate | e }}/unit.</li>
+    <li><strong>Maintenance:</strong> Regular maintenance of the property shall be the responsibility of the Owner. Damages due to negligence by the Tenant shall be repaired at the Tenant’s expense.</li>
+    <li><strong>Subletting:</strong> The Tenant shall not sublet or assign the property without the prior written consent of the Owner.</li>
+    <li><strong>Use of Property:</strong> The premises shall only be used for residential purposes and not for any unlawful or commercial use.</li>
+    <li><strong>Termination:</strong> Either party may terminate this agreement with 30 days’ prior written notice.</li>
+    <li><strong>Furnishings & Inventory:</strong> The property is let out with the items listed in Annexure-I, if any.</li>
+    <li><strong>Vacating the Property:</strong> On expiry or termination, the Tenant shall return the premises in good condition, failing which deductions may be made from the security deposit.</li>
+    <li><strong>Dispute Resolution:</strong> Any dispute arising from this agreement shall be subject to the jurisdiction of the courts in {{ property.city | e }}.</li>
   </ol>
 
+  <div class="section-title">Annexure-I: List of Items Provided</div>
   {% if annexures %}
-  <h3>Annexure-I</h3>
-  <table>
-    <tr><th>Item Name</th><th>Item Count</th></tr>
-    {% for item in annexures %}
-      <tr>
-        <td>{{ item.name | e }}</td>
-        <td>{{ item.count | e }}</td>
-      </tr>
-    {% endfor %}
-  </table>
+    <table>
+      <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in annexures %}
+          <tr>
+            <td>{{ item.name | e }}</td>
+            <td>{{ item.count | e }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   {% else %}
     <p>No annexures provided.</p>
   {% endif %}
 
-  <br><br>
-  <table width="100%">
-    <tr>
-      <td><strong>Owner Signature:</strong> ___________________</td>
-      <td><strong>Tenant Signature:</strong> ___________________</td>
-    </tr>
-  </table>
+  <div class="signature-section">
+    <div class="signature-box">
+      <div class="signature-line"></div>
+      <strong>Owner Signature</strong><br>
+      Name: {{ owner.name | e }}
+    </div>
+    <div class="signature-box" style="float: right;">
+      <div class="signature-line"></div>
+      <strong>Tenant Signature</strong><br>
+      Name: {{ tenant.name | e }}
+    </div>
+  </div>
+
 </body>
 </html>
