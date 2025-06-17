@@ -10,12 +10,12 @@ class User(db.Model):
     email = db.Column(db.String(150), unique=True, nullable=False)
     password_hash = db.Column(db.String(256), nullable=False)
 
-    name = db.Column(db.String(100))
-    gender = db.Column(db.String(10))  # e.g., 'Male', 'Female', 'Other'
-    age = db.Column(db.Integer)
-    contact = db.Column(db.String(15))
-    address = db.Column(db.String(200))
-    hobbies = db.Column(db.ARRAY(db.String))
+    name = db.Column(db.String(100),nullable=True)
+    gender = db.Column(db.String(10),nullable=True)  # e.g., 'Male', 'Female', 'Other'
+    age = db.Column(db.Integer,nullable=True)
+    contact = db.Column(db.String(15),nullable=True)
+    address = db.Column(db.String(200),nullable=True)
+    hobbies = db.Column(db.ARRAY(db.String),nullable=True)
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)

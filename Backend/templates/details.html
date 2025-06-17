@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <title>Profile Details</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/details.css') }}">
+</head>
+<body>
+  <div class="container">
+    <div class="image-section" id="image-section">
+      <!-- Images will be dynamically inserted -->
+    </div>
+
+    <div class="info-section" id="info-section">
+      <h1 class="title" id="name">Loading...</h1>
+      <p class="subtitle" id="looking_for"></p>
+      <p class="description" id="description"></p>
+      <div class="features" id="hobbies"></div>
+      <div class="features" id="preferences"></div>
+      <div class="pricing">
+        <p class="old-price" id="old-price"></p>
+        <p class="new-price" id="new-price"></p>
+      </div>
+      <span class="badge" id="badge"></span>
+      <button class="contact-btn" id="contact">Contact</button>
+      <div class="meta">
+        <span id="city"></span>
+        <span id="gender"></span>
+      </div>
+    </div>
+  </div>
+
+
+<script src="{{ url_for('static', filename='JS/details.js') }}"></script>
+
+</body>
+</html>
