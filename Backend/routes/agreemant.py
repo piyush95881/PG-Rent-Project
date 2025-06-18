@@ -23,6 +23,9 @@ def generate_agreement():
 
     filename = f"rental_agreement_{uuid4().hex}.pdf"
     filepath = os.path.join("agreements", filename)
+    missing = [key for key in required_fields if key not in data]
+    if missing:
+        print(missing)
 
     html = render_template("rental_agreement.html",
                            owner=data['owner'],

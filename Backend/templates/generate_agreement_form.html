@@ -10,18 +10,8 @@
 </head>
 <body>
 <div class="page-container">
-  <header>
-    <div class="header-inner" role="banner">
-      <a href="#" class="logo" aria-label="PG-Rental homepage">
-        PG-<span class="highlight">Rental</span><sup aria-hidden="true">®</sup>
-      </a>
-      <nav class="header-buttons" aria-label="User account actions">
-        <button class="btn-secondary" type="button" aria-label="Login or Register">Login / Register</button>
-        <button class="btn-primary" type="button" aria-label="Download the PG-Rental app">Download App</button>
-      </nav>
-    </div>
-  </header>
 
+  <div id="navbar-container"></div>
   <main>
     <section class="content-wrapper" aria-labelledby="pageTitle" role="main">
       <nav class="steps-nav" aria-label="Steps for rent agreement process">
@@ -38,60 +28,79 @@
         <p class="form-subtitle">Fill in details of the owner/lessor/landlord.</p>
 
         <form id="ownerDetailsForm" novalidate>
-          <label for="fullName">Full Name<span aria-hidden="true" style="color:#dc2626;">*</span></label>
-          <input type="text" id="fullName" name="fullName" required />
 
-          <label for="mobileNumber">Mobile Number<span aria-hidden="true" style="color:#dc2626;">*</span></label>
-          <input type="tel" id="mobileNumber" name="mobileNumber" pattern="[0-9\s\-\+\(\)]{7,15}" required />
+  <!-- Step 1: Owner Info -->
+  <div class="form-step active">
+    <label for="fullName">Full Name<span>*</span></label>
+    <input type="text" id="fullName" name="fullName" required />
 
-          <label for="address">Address<span aria-hidden="true" style="color:#dc2626;">*</span></label>
-          <input type="text" id="address" name="address" required />
+    <label for="mobileNumber">Mobile Number<span>*</span></label>
+    <input type="tel" id="mobileNumber" name="mobileNumber" required />
 
-          <!-- Tenant Info -->
-          <label for="tenantName">Tenant Full Name<span style="color:#dc2626;">*</span></label>
-          <input type="text" id="tenantName" name="tenantName" required />
+    <label for="address">Address<span>*</span></label>
+    <input type="text" id="address" name="address" required />
+  </div>
 
-          <label for="tenantAddress">Tenant Address<span style="color:#dc2626;">*</span></label>
-          <input type="text" id="tenantAddress" name="tenantAddress" required />
+  <!-- Step 2: Tenant Info -->
+  <div class="form-step">
+    <label for="tenantName">Tenant Full Name<span>*</span></label>
+    <input type="text" id="tenantName" name="tenantName" required />
 
-          <!-- Property Info -->
-          <label for="propertyAddress">Property Address<span style="color:#dc2626;">*</span></label>
-          <input type="text" id="propertyAddress" name="propertyAddress" required />
+    <label for="tenantAddress">Tenant Address<span>*</span></label>
+    <input type="text" id="tenantAddress" name="tenantAddress" required />
+  </div>
 
-          <label for="city">City<span style="color:#dc2626;">*</span></label>
-          <input type="text" id="city" name="city" required />
+  <!-- Step 3: Property Info -->
+  <div class="form-step">
+    <label for="propertyAddress">Property Address<span>*</span></label>
+    <input type="text" id="propertyAddress" name="propertyAddress" required />
 
-          <label for="state">State<span style="color:#dc2626;">*</span></label>
-          <input type="text" id="state" name="state" required />
+    <label for="city">City<span>*</span></label>
+    <input type="text" id="city" name="city" required />
 
-          <!-- Rental Terms -->
-          <label for="startDate">Start Date<span style="color:#dc2626;">*</span></label>
-          <input type="date" id="startDate" name="startDate" required />
+    <label for="state">State<span>*</span></label>
+    <input type="text" id="state" name="state" required />
+  </div>
 
-          <label for="endDate">End Date<span style="color:#dc2626;">*</span></label>
-          <input type="date" id="endDate" name="endDate" required />
+  <!-- Step 4: Rental Terms -->
+  <div class="form-step">
+    <label for="startDate">Start Date<span>*</span></label>
+    <input type="date" id="startDate" name="startDate" required />
 
-          <label for="rent">Rent Amount (in ₹)<span style="color:#dc2626;">*</span></label>
-          <input type="number" id="rent" name="rent" required />
+    <label for="endDate">End Date<span>*</span></label>
+    <input type="date" id="endDate" name="endDate" required />
 
-          <label for="deposit">Security Deposit (in ₹)<span style="color:#dc2626;">*</span></label>
-          <input type="number" id="deposit" name="deposit" required />
+    <label for="rent">Rent Amount (₹)<span>*</span></label>
+    <input type="number" id="rent" name="rent" required />
 
-          <label for="email">Tenant Email<span style="color:#dc2626;">*</span></label>
-          <input type="email" id="email" name="email" required />
+    <label for="deposit">Security Deposit (₹)<span>*</span></label>
+    <input type="number" id="deposit" name="deposit" required />
 
-          <!-- Annexures -->
-          <div id="annexureList" class="annexures">
-            <h4>Annexures</h4>
-            <div class="annexure-item">
-              <input type="text" name="annexure_name[]" placeholder="Item Name" required />
-              <input type="number" name="annexure_count[]" placeholder="Item Count" required />
-            </div>
-          </div>
-          <button type="button" class="btn-submit" onclick="addAnnexure()">+ Add Item</button>
+    <label for="email">Tenant Email<span>*</span></label>
+    <input type="email" id="email" name="email" required />
+  </div>
 
-          <button type="submit" class="btn-submit">Generate Agreement</button>
-        </form>
+  <!-- Step 5: Annexures -->
+  <div class="form-step">
+    <div id="annexureList" class="annexures">
+      <h4>Annexures</h4>
+      <div class="annexure-item">
+        <input type="text" name="annexure_name[]" placeholder="Item Name" required />
+        <input type="number" name="annexure_count[]" placeholder="Item Count" required />
+      </div>
+    </div>
+    <button type="button" class="btn-submit" onclick="addAnnexure()">+ Add Item</button>
+  </div>
+
+  <!-- Navigation Buttons -->
+  <div class="step-controls">
+    <button type="button" class="btn-submit" id="prevStep">Previous</button>
+    <button type="button" class="btn-submit" id="nextStep">Next</button>
+    <button type="submit" class="btn-submit" id="submitBtn" style="display:none;">Generate Agreement</button>
+  </div>
+
+</form>
+
       </section>
     </section>
   </main>

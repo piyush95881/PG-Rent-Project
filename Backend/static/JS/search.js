@@ -1,4 +1,15 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async() => {
+
+    const navbar = document.getElementById('navbar-container');
+
+  // Load the navbar
+  const response = await fetch('/navbar.html');
+  navbar.innerHTML = await response.text();
+
+  // Wait for DOM to update, then bind events
+  initNavbarListeners();
+
+
   const resultsContainer = document.getElementById('resultsContainer');
   const tabs = document.querySelectorAll('.tab-btn');
   const searchBtn = document.getElementById('searchBtn');
@@ -145,4 +156,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial load
   loadData(currentTab);
+
+
 });
+function initNavbarListeners() {
+  const signupBtn = document.querySelector('.signup-btn');
+  if (!signupBtn) return; // Avoid null errors
+
+  const token = localStorage.getItem('access_token');
+
+  if (token) {
+    signupBtn.textContent = 'Logout';
+    signupBtn.addEventListener('click', () => {
+      localStorage.removeItem('access_token');
+      window.location.reload();
+    });
+  } else {
+    signupBtn.textContent = 'Login/Signup';
+    signupBtn.addEventListener('click', () => {
+      window.location.href = '/login';
+    });
+  }
+}

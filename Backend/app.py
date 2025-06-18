@@ -74,9 +74,15 @@ def create_app():
     def show_form():
         return render_template("generate_agreement_form.html")
 
+    @app.route('/navbar.html')
+    def serve_navbar():
+        return render_template('navbar.html')
+    @app.route('/profile')
+    def serve_profile():
+        return render_template('prof_index.html')
     @app.route('/')
     def home():
-        return 'PG Rent API is running!'
+        return render_template('index.html')
 
     return app
 

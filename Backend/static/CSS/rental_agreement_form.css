@@ -231,3 +231,15 @@ input[type="date"]:focus {
     }
   }
 
+.form-step {
+  display: none;
+}
+.form-step.active {
+  display: block;
+}
+.step-controls {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}

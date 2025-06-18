@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (res.ok) {
         localStorage.setItem('access_token', data.access_token);
-        window.location.href = '/generate-form';
+        window.location.href = '/';
       } else {
         errorBox.textContent = data.msg || "Login failed.";
       }

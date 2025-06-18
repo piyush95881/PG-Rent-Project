@@ -1,15 +1,49 @@
 const form = document.getElementById('ownerDetailsForm');
 
-document.querySelector('.btn-secondary').addEventListener('click', () => {
-    const token = localStorage.getItem('access_token');
+document.addEventListener('DOMContentLoaded', async () => {
+  // Load navbar
+  const navbar = document.getElementById('navbar-container');
 
-    if (token) {
-      alert("You're already logged in.");
-    } else {
-      window.location.href = "/login"; // Redirect to your actual login/signup page
-    }
-  });
+  // Load the navbar
+  const response = await fetch('/navbar.html');
+  navbar.innerHTML = await response.text();
 
+  // Wait for DOM to update, then bind events
+  initNavbarListeners();
+
+  // Wait for navbar content to load before adding event listener
+  const btnSecondary = document.querySelector('.btn-secondary');
+  if (btnSecondary) {
+    btnSecondary.addEventListener('click', () => {
+      const token = localStorage.getItem('access_token');
+      if (token) {
+        alert("You're already logged in.");
+      } else {
+        window.location.href = "/login";
+      }
+    });
+  }
+});
+
+function initNavbarListeners() {
+  const signupBtn = document.querySelector('.signup-btn');
+  if (!signupBtn) return; // Avoid null errors
+
+  const token = localStorage.getItem('access_token');
+
+  if (token) {
+    signupBtn.textContent = 'Logout';
+    signupBtn.addEventListener('click', () => {
+      localStorage.removeItem('access_token');
+      window.location.reload();
+    });
+  } else {
+    signupBtn.textContent = 'Login/Signup';
+    signupBtn.addEventListener('click', () => {
+      window.location.href = '/login';
+    });
+  }
+}
 function addAnnexure() {
   const container = document.getElementById('annexureList');
   const div = document.createElement('div');
@@ -20,7 +54,6 @@ function addAnnexure() {
   `;
   container.appendChild(div);
 }
-
 form.addEventListener('submit', async function(event) {
   event.preventDefault();
   const formData = new FormData(form);
@@ -86,3 +119,36 @@ form.addEventListener('submit', async function(event) {
       alert("Error generating agreement.");
     }
   });
+let currentStep = 0;
+const formSteps = document.querySelectorAll('.form-step');
+const nextBtn = document.getElementById('nextStep');
+const prevBtn = document.getElementById('prevStep');
+const submitBtn = document.getElementById('submitBtn');
+
+function showStep(index) {
+  formSteps.forEach((step, i) => {
+    step.classList.toggle('active', i === index);
+  });
+  prevBtn.style.display = index > 0 ? 'inline-block' : 'none';
+  nextBtn.style.display = index < formSteps.length - 1 ? 'inline-block' : 'none';
+  submitBtn.style.display = index === formSteps.length - 1 ? 'inline-block' : 'none';
+}
+
+nextBtn.addEventListener('click', () => {
+  const inputs = formSteps[currentStep].querySelectorAll('input');
+  for (const input of inputs) {
+    if (!input.checkValidity()) {
+      input.reportValidity();
+      return;
+    }
+  }
+  if (currentStep < formSteps.length - 1) currentStep++;
+  showStep(currentStep);
+});
+
+prevBtn.addEventListener('click', () => {
+  if (currentStep > 0) currentStep--;
+  showStep(currentStep);
+});
+
+showStep(currentStep); // Initialize first step

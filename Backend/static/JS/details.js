@@ -1,3 +1,14 @@
+document.addEventListener('DOMContentLoaded', async () => {
+    const navbar = document.getElementById('navbar-container');
+
+  // Load the navbar
+  const response = await fetch('/navbar.html');
+  navbar.innerHTML = await response.text();
+
+  // Wait for DOM to update, then bind events
+  initNavbarListeners();
+  });
+
 const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
     const type = params.get("type");
