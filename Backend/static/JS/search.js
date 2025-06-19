@@ -64,9 +64,14 @@ document.addEventListener('DOMContentLoaded', async() => {
     // Unique ID for navigation
     const itemId = item.id || item._id || Math.random().toString(36).substr(2, 9);
 
-    const imgUrl = type === 'people'
-      ? `https://via.placeholder.com/300x200?text=${item.name?.[0] || 'U'}`
-      : item.pictures?.[0] || 'https://via.placeholder.com/300x200?text=No+Image';
+    const firstName = item.name?.split(' ')[0] || 'User';
+
+const imgUrl = type === 'people'
+  ? `https://ui-avatars.com/api/?name=${encodeURIComponent(firstName)}&background=random&bold=true`
+  : 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80';
+
+
+
 
     const title = type === 'people' ? item.name : item.name || 'Property';
     const subtitle = type === 'people'
@@ -82,8 +87,13 @@ document.addEventListener('DOMContentLoaded', async() => {
       ? ''
       : `<span class="new">₹${item.rent?.single || '0'}</span>`;
     const features = type === 'people'
-      ? [item.hobbies, item.preferences, item.age && `Age: ${item.age}`].filter(Boolean)
-      : item.amenities?.slice(0, 3) || [];
+  ? [
+      ...(Array.isArray(item.hobbies) ? item.hobbies : []),
+      ...(Array.isArray(item.preferences) ? item.preferences : []),
+      item.age ? `Age: ${item.age}` : null
+    ].filter(Boolean)
+  : item.amenities?.slice(0, 3) || [];
+
 
     div.innerHTML = `
       <div class="card" data-id="${itemId}" data-type="${type}">

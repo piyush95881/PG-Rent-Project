@@ -72,11 +72,24 @@ const params = new URLSearchParams(window.location.search);
         }
 
         // Images
-        const imgSection = document.getElementById("image-section");
-        const images = data.pictures || [];
-        if (images.length > 0) {
-          imgSection.innerHTML = `<img src="${images[0]}" alt="Preview Image">`;
-        }
+        // Images
+     const imgSection = document.getElementById("image-section");
+
+let imgUrl = '';
+if (type === 'people') {
+  const firstName = data.name?.split(' ')[0] || 'User';
+  imgUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(firstName)}&background=random&bold=true`;
+} else {
+  imgUrl = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80';
+}
+
+// Override if real image exists
+if (data.pictures && data.pictures.length > 0) {
+  imgUrl = data.pictures[0];
+}
+
+imgSection.innerHTML = `<img src="${imgUrl}" alt="Preview Image">`;
+
       })
       .catch(err => {
         document.querySelector('.info-section').innerText = "Failed to load data.";

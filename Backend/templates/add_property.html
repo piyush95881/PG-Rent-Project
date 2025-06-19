@@ -1,0 +1,57 @@
+<!-- templates/add-property.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Property</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 py-10">
+  <div class="max-w-xl mx-auto bg-white p-8 rounded-2xl shadow-md">
+    <h2 class="text-2xl font-bold mb-6 text-center">Add New Property</h2>
+    <form id="propertyForm" class="space-y-4">
+      <input type="text" name="name" placeholder="Property Name" required class="w-full p-3 border rounded-lg">
+      <input type="text" name="contact" placeholder="Contact Number" required class="w-full p-3 border rounded-lg">
+      <input type="text" name="city" placeholder="City" required class="w-full p-3 border rounded-lg">
+      <input type="number" name="rent" placeholder="Rent" required class="w-full p-3 border rounded-lg">
+      <input type="number" name="security_amount" placeholder="Security Amount" class="w-full p-3 border rounded-lg">
+      <input type="number" name="electricity_rate" placeholder="Electricity Rate" class="w-full p-3 border rounded-lg">
+      <input type="text" name="amenities" placeholder="Amenities (comma separated)" class="w-full p-3 border rounded-lg">
+      <input type="text" name="pictures" placeholder="Image URLs (comma separated)" class="w-full p-3 border rounded-lg">
+
+      <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('propertyForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = {
+        name: formData.get('name'),
+        contact: formData.get('contact'),
+        city: formData.get('city'),
+        rent: Number(formData.get('rent')),
+        security_amount: Number(formData.get('security_amount')),
+        electricity_rate: Number(formData.get('electricity_rate')),
+        amenities: formData.get('amenities')?.split(',').map(a => a.trim()) || [],
+        pictures: formData.get('pictures')?.split(',').map(p => p.trim()) || []
+      };
+
+      const res = await fetch('api/upload/properties', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        alert('Property added successfully!');
+        window.history.back();
+      } else {
+        alert('Failed to add property.');
+      }
+    });
+  </script>
+</body>
+</html>
+

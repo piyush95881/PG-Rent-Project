@@ -66,6 +66,14 @@ def create_app():
         print("🔐 JWT error:", str(e))  # This will show in your console
         return jsonify({"msg": str(e)}), 401
 
+    @app.route('/add-person', methods=['POST','GET'])
+    def add_person():
+        return render_template('add_person.html')
+
+    @app.route('/add-property', methods=['POST','GET'])
+    def add_property():
+        return render_template('add_property.html')
+
     @app.route('/login')
     def show_login():
         return render_template("login.html")
@@ -77,9 +85,11 @@ def create_app():
     @app.route('/navbar.html')
     def serve_navbar():
         return render_template('navbar.html')
+
     @app.route('/profile')
     def serve_profile():
         return render_template('prof_index.html')
+
     @app.route('/')
     def home():
         return render_template('index.html')

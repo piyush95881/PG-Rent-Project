@@ -1,0 +1,66 @@
+<!-- templates/add-person.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Person</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 py-10">
+  <div class="max-w-xl mx-auto bg-white p-8 rounded-2xl shadow-md">
+    <h2 class="text-2xl font-bold mb-6 text-center">Add New Person</h2>
+    <form id="personForm" class="space-y-4">
+      <input type="text" name="name" placeholder="Full Name" required class="w-full p-3 border rounded-lg">
+      <input type="text" name="gender" placeholder="Gender" required class="w-full p-3 border rounded-lg">
+      <input type="text" name="contact" placeholder="Contact Number" required class="w-full p-3 border rounded-lg">
+      <input type="text" name="city" placeholder="City" required class="w-full p-3 border rounded-lg">
+      <input type="text" name="looking_for" placeholder="Looking For (e.g. roommate)" class="w-full p-3 border rounded-lg">
+      <input type="text" name="hobbies" placeholder="Hobbies (comma separated)" class="w-full p-3 border rounded-lg">
+      <textarea name="description" placeholder="Short Bio" class="w-full p-3 border rounded-lg"></textarea>
+      <textarea name="preferences" placeholder='Preferences (JSON format: {"smoking":"no","food":"veg"})' class="w-full p-3 border rounded-lg"></textarea>
+
+      <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('personForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+
+      const data = {
+        name: formData.get('name'),
+        gender: formData.get('gender'),
+        contact: formData.get('contact'),
+        city: formData.get('city'),
+        looking_for: formData.get('looking_for'),
+        hobbies: formData.get('hobbies')?.split(',').map(h => h.trim()) || [],
+        description: formData.get('description'),
+        preferences: {}
+      };
+
+      // Parse preferences if valid JSON
+      try {
+        const prefRaw = formData.get('preferences');
+        if (prefRaw) data.preferences = JSON.parse(prefRaw);
+      } catch (e) {
+        alert('Invalid JSON in preferences field.');
+        return;
+      }
+
+      const res = await fetch('/api/upload/people', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        alert('Person added successfully!');
+        window.history.back();
+      } else {
+        alert('Failed to add person.');
+      }
+    });
+  </script>
+</body>
+</html>

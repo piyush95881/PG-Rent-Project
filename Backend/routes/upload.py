@@ -3,7 +3,7 @@ from models import db, Person, Property
 
 upload_bp = Blueprint('upload', __name__)
 
-@upload_bp.route('/people/create', methods=['POST'])
+@upload_bp.route('/people', methods=['POST'])
 def create_person():
     data = request.get_json()
     person = Person(
@@ -20,7 +20,7 @@ def create_person():
     db.session.commit()
     return jsonify({"message": "Person added", "id": person.id}), 201
 
-@upload_bp.route('/properties/create', methods=['POST'])
+@upload_bp.route('/properties', methods=['POST'])
 def create_property():
     data = request.get_json()
     prop = Property(
