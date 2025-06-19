@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlatMate - Your Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='CSS/prof_style.css') }}" />
+</head>
+<body>
+    <header class="header">
+        <a href="/index" class="logo" aria-label="FlatMate homepage">
+        Flat<span class="highlight">Mate</span><sup aria-hidden="true">®</sup>
+      </a>
+        <div class="header-right">
+            <a href="#" class="team-link">
+                <span>👥</span> My Team
+            </a>
+            <a href="#" class="add-listing-btn">
+                <span>+</span> Add Listing
+                <span class="free-badge">FREE</span>
+            </a>
+            <div class="profile-avatar">M</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">Your Profile</h1>
+        
+        <div class="form-container">
+            <div class="success-message" id="successMessage">
+                Profile updated successfully!
+            </div>
+            <div class="error-message" id="errorMessage">
+                Failed to update profile. Please try again.
+            </div>
+
+            <form id="profileForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">First Name</label>
+                        <input type="text" class="form-input" id="firstName" value="Madhav" required>
+                        <div class="engagement-note">
+                            Note: Users with real names gets <strong>90% more engagement.</strong>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" class="form-input" id="lastName" value="Agrawal" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Contact Number</label>
+                        <input type="tel" class="form-input" id="contactNumber" value="9675820637" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Gender</label>
+                        <div class="gender-group">
+                            <div class="gender-option selected" data-gender="male">Male</div>
+                            <div class="gender-option" data-gender="female">Female</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label class="form-label">Address</label>
+                        <textarea class="form-textarea" id="address" placeholder="Enter your full address..." required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label class="form-label">Hobbies</label>
+                        <textarea class="form-textarea" id="hobbies" placeholder="Tell us about your hobbies and interests..."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="save-btn" id="saveBtn">
+                    <span id="saveText">Save Changes</span>
+                    <span>→</span>
+                    <div class="loading-spinner" id="loadingSpinner" style="display: none;"></div>
+                </button>
+            </form>
+        </div>
+    </div>
+<script src='{{ url_for('static',filename='JS/prof_index.js') }}'></script>
+</body>
+</html>
