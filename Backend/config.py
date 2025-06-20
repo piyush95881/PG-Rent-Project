@@ -15,3 +15,10 @@ class Config:
     JWT_HEADER_TYPE = 'Bearer'
     JWT_COOKIE_CSRF_PROTECT = False
 
+
+    BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+    UPLOAD_FOLDER = os.path.join(BASE_DIR, 'uploads')
+
+    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'pdf'}
+
+

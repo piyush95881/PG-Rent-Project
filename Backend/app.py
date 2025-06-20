@@ -1,7 +1,7 @@
 import os
 
 from dotenv import load_dotenv
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, send_from_directory
 from flask_cors import CORS
 from flask_jwt_extended.exceptions import JWTExtendedException
 from flask_migrate import Migrate
@@ -15,6 +15,7 @@ from routes.search import search_bp
 from extensions import mail,db,jwt
 from routes.upload import upload_bp
 
+UPLOAD_FOLDER = os.path.join(os.getcwd(), 'uploads')
 # Initialize extensions directly
 
 
@@ -28,6 +29,8 @@ def create_app():
     CORS(app, supports_credentials=True)
 
     migrate = Migrate(app, db)
+
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -60,6 +63,10 @@ def create_app():
     @app.route('/details')
     def details():
         return render_template('details.html')
+
+    @app.route('/uploads/<filename>')
+    def uploaded_file(filename):
+        return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
     @app.errorhandler(JWTExtendedException)
     def handle_jwt_error(e):

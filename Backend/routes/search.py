@@ -4,18 +4,31 @@ from extensions import db
 
 search_bp = Blueprint('search', __name__)
 
-
 @search_bp.route('/people', methods=['GET'])
 def get_people():
     query = Person.query
+
     city = request.args.get('city')
+    gender = request.args.get('gender')
     looking_for = request.args.get('looking_for')
+    max_budget = request.args.get('budget', type=int)
 
+    # Apply filters only if parameters exist
     if city:
-        query = query.filter(Person.city.ilike(f"%{city}%"))
-    if looking_for:
-        query = query.filter(Person.looking_for == looking_for)
+        city = city.strip().lower()
+        query = query.filter(db.func.lower(Person.city).like(f"{city}%"))
 
+    if gender:
+        query = query.filter(Person.gender.ilike(gender))  # case-insensitive
+
+    if looking_for:
+        query = query.filter(Person.looking_for.ilike(looking_for))  # case-insensitive
+
+    if max_budget:
+        # Assuming budget is stored in Person.preferences['budget'] or similar
+        query = query.filter(Person.preferences['budget'].as_integer() <= max_budget)
+
+    # Pagination
     page = int(request.args.get('page', 1))
     limit = int(request.args.get('limit', 10))
     people = query.paginate(page=page, per_page=limit, error_out=False)
@@ -42,11 +55,18 @@ def get_people():
 @search_bp.route('/properties', methods=['GET'])
 def get_properties():
     query = Property.query
+
     city = request.args.get('city')
     max_rent = request.args.get('max_rent', type=int)
+    gender_preference = request.args.get('gender_preference')
 
     if city:
-        query = query.filter(Property.city.ilike(f"%{city}%"))
+        city = city.strip().lower()
+        query = query.filter(db.func.lower(Property.city).like(f"{city}%"))
+
+    if gender_preference:
+        query = query.filter(Property.gender_preference.ilike(gender_preference))
+
     if max_rent:
         query = query.filter(
             (Property.rent['single'].as_integer() <= max_rent) |
@@ -54,6 +74,7 @@ def get_properties():
             (Property.rent['triple'].as_integer() <= max_rent)
         )
 
+    # Pagination
     page = int(request.args.get('page', 1))
     limit = int(request.args.get('limit', 10))
     properties = query.paginate(page=page, per_page=limit, error_out=False)
@@ -68,6 +89,7 @@ def get_properties():
         "electricity_rate": float(p.electricity_rate),
         "amenities": p.amenities,
         "pictures": p.pictures,
+        "gender_preference": getattr(p, "gender_preference", "any")
     } for p in properties.items]
 
     return jsonify({

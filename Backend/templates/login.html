@@ -24,22 +24,18 @@
 <div class="container" id="container">
   <!-- Sign Up -->
   <div class="form-container sign-up-container">
-    <form id="signupForm">
-      <h1>Create Account</h1>
-{#      <div class="social-container">#}
-{#        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>#}
-{#        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>#}
-{#        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>#}
-{#      </div>#}
-        <br><br>
-      <span>or use your email for registration</span>
-      <input type="text" id="signupName" placeholder="Name" required />
-      <input type="email" id="signupEmail" placeholder="Email" required />
-      <input type="password" id="signupPassword" placeholder="Password" required />
-      <p id="signupError"></p>
-      <button type="submit">Sign Up</button>
-    </form>
-  </div>
+  <form id="signupForm">
+    <h1>Create Account</h1>
+    <br><br>
+    <span>or use your email for registration</span>
+    <input type="text" id="signupUsername" placeholder="Username" required />
+    <input type="text" id="signupName" placeholder="Full Name" required />
+    <input type="email" id="signupEmail" placeholder="Email" required />
+    <input type="password" id="signupPassword" placeholder="Password" required />
+    <p id="signupError"></p>
+    <button type="submit">Sign Up</button>
+  </form>
+</div>
 
   <!-- Sign In -->
   <div class="form-container sign-in-container">

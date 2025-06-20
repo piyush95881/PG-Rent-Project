@@ -67,8 +67,9 @@ document.addEventListener('DOMContentLoaded', async() => {
     const firstName = item.name?.split(' ')[0] || 'User';
 
 const imgUrl = type === 'people'
-  ? `https://ui-avatars.com/api/?name=${encodeURIComponent(firstName)}&background=random&bold=true`
-  : 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80';
+  ? (item.profile_picture ? `/uploads/${item.profile_picture}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(firstName)}&background=random&bold=true`)
+  : (item.pictures?.[0] ? `/uploads/${item.pictures[0]}` : 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80');
+
 
 
 
