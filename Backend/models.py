@@ -1,7 +1,7 @@
 from extensions import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.dialects.postgresql import ARRAY, JSON, NUMERIC
-from datetime import datetime
+from datetime import datetime, UTC
 
 
 class User(db.Model):
@@ -19,7 +19,7 @@ class User(db.Model):
     address = db.Column(db.String(200))
     hobbies = db.Column(ARRAY(db.String))
     profile_picture = db.Column(db.String(300))
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=datetime.now(UTC))
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -49,7 +49,7 @@ class Person(db.Model):
     looking_for = db.Column(db.String(20))  # room / roommate
     profile_picture = db.Column(db.String(300))  # file path to uploaded image
     government_id = db.Column(db.String(300))  # file path to uploaded govt ID
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=datetime.now(UTC))
 
 
 class Property(db.Model):
@@ -77,4 +77,4 @@ class Property(db.Model):
 
     pictures = db.Column(ARRAY(db.String))  # List of file paths to uploaded images
     government_id = db.Column(db.String(300))  # file path to uploaded govt ID
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=datetime.now(UTC))

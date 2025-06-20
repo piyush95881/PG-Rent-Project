@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
+
 from models import db, Person, Property
 from routes.utils import save_file
-import os
 
 upload_bp = Blueprint('upload', __name__)
 

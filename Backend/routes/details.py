@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
+
 from models import Person, Property
-from extensions import db
 
 details_bp = Blueprint('details', __name__, url_prefix='/api')
 
