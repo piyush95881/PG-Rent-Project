@@ -25,29 +25,51 @@ def update_profile():
         return jsonify({"msg": "User not found"}), 404
 
     try:
-        # Handle JSON + form fields
         data = request.form.to_dict()
         hobbies = request.form.getlist('hobbies')
-        user.name = data.get('name', user.name)
-        user.gender = data.get('gender', user.gender)
-        user.age = data.get('age', user.age)
-        user.contact = data.get('contact', user.contact)
-        user.address = data.get('address', user.address)
+
+        # Optional fields — update only if provided
+        if 'firstName' in data or 'lastName' in data:
+            first_name = data.get('firstName', '').strip()
+            last_name = data.get('lastName', '').strip()
+            user.name = f"{first_name} {last_name}".strip()
+
+        if 'email' in data:
+            user.email = data['email']
+        if 'phone' in data:
+            user.contact = data['phone']
+        if 'age' in data:
+            user.age = int(data['age']) if data['age'].isdigit() else None
+        if 'gender' in data:
+            user.gender = data['gender']
+        if 'occupation' in data:
+            user.occupation = data['occupation']
+        if 'company' in data:
+            user.company = data['company']
+        if 'income' in data:
+            user.income = data['income']
+        if 'currentCity' in data:
+            user.address = data['currentCity']
+        if 'preferredGender' in data:
+            user.preferred_gender = data['preferredGender']
+        if 'bio' in data:
+            user.bio = data['bio']
         if hobbies:
             user.hobbies = hobbies
 
-        # Handle profile picture upload
+        # Handle profile picture upload (optional)
         profile_pic = request.files.get('profile_picture')
         if profile_pic and allowed_file(profile_pic.filename):
             if len(profile_pic.read()) > MAX_FILE_SIZE_MB * 1024 * 1024:
                 return jsonify({"msg": "File exceeds max 1MB"}), 400
-            profile_pic.seek(0)  # reset pointer
+            profile_pic.seek(0)
             filename = secure_filename(f"user_{user_id}_profile.{profile_pic.filename.rsplit('.', 1)[1].lower()}")
             filepath = os.path.join(UPLOAD_FOLDER, filename)
             profile_pic.save(filepath)
-            user.profile_picture = filepath  # assuming this column exists in your User model
+            user.profile_picture = filepath
 
         db.session.commit()
+
         return jsonify({
             "msg": "Profile updated successfully",
             "user": {
@@ -58,6 +80,11 @@ def update_profile():
                 "age": user.age,
                 "contact": user.contact,
                 "address": user.address,
+                "occupation": getattr(user, 'occupation', None),
+                "company": getattr(user, 'company', None),
+                "income": getattr(user, 'income', None),
+                "preferred_gender": getattr(user, 'preferred_gender', None),
+                "bio": getattr(user, 'bio', None),
                 "hobbies": user.hobbies,
                 "profile_picture": getattr(user, "profile_picture", None)
             }
@@ -76,18 +103,33 @@ def get_profile():
     if not user:
         return jsonify({"msg": "User not found"}), 404
 
+    # Split name into first/last if present
+    first_name = ""
+    last_name = ""
+    if user.name:
+        parts = user.name.split()
+        first_name = parts[0]
+        if len(parts) > 1:
+            last_name = " ".join(parts[1:])
+
     return jsonify({
         "username": user.username,
         "email": user.email,
-        "name": user.name,
+        "first_name": first_name,
+        "last_name": last_name,
         "gender": user.gender,
         "age": user.age,
         "contact": user.contact,
         "address": user.address,
+        "occupation": getattr(user, 'occupation', None),
+        "company": getattr(user, 'company', None),
+        "income": getattr(user, 'income', None),
+        "preferred_gender": getattr(user, 'preferred_gender', None),
+        "bio": getattr(user, 'bio', None),
         "hobbies": user.hobbies,
-        "profile_picture": getattr(user, "profile_picture", None)
+        "profile_picture": f"/uploads/{user.profile_picture}" if user.profile_picture else None
+    }), 200
 
-    })
 
 
 @user_bp.route('/delete-account', methods=['DELETE'])

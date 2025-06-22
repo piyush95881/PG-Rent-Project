@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - FlatMate</title>
+    <link rel="stylesheet" href="../Backend/static/CSS/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <h2>FlatMate</h2>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="../Backend/templates/add-listing.html">Add Listing</a>
+                <a href="../Backend/templates/rent-agreement.html">Rent Agreement</a>
+                <a href="profile.html" class="active">Profile</a>
+            </div>
+            <div class="nav-auth">
+                <button class="btn-secondary">Login</button>
+                <button class="btn-primary">Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <div class="container">
+            <div class="profile-header">
+                <h1>My Profile</h1>
+                <p>Manage your profile information and preferences</p>
+            </div>
+
+            <div class="profile-container">
+                <div class="profile-sidebar">
+                    <div class="profile-image-section">
+                        <div class="profile-image-container">
+                            <img id="profileImage" src="https://via.placeholder.com/150x150/e2e8f0/64748b?text=Profile" alt="Profile Picture">
+                            <div class="image-upload-overlay">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                        </div>
+                        <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                        <button class="btn-secondary" onclick="document.getElementById('imageUpload').click()">
+                            <i class="fas fa-upload"></i> Upload Photo
+                        </button>
+                    </div>
+                    
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">0</span>
+                            <span class="stat-label">Active Listings</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">0</span>
+                            <span class="stat-label">Profile Views</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-form">
+                    <form id="profileForm">
+                        <div class="form-section">
+                            <h3>Personal Information</h3>
+                            
+                            <div class="form-group-row">
+                                <div class="form-group">
+                                    <label for="firstName">First Name *</label>
+                                    <input type="text" id="firstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name *</label>
+                                    <input type="text" id="lastName" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group-row">
+                                <div class="form-group">
+                                    <label for="email">Email *</label>
+                                    <input type="email" id="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number *</label>
+                                    <input type="tel" id="phone" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group-row">
+                                <div class="form-group">
+                                    <label for="age">Age</label>
+                                    <input type="number" id="age" min="18" max="100">
+                                </div>
+                                <div class="form-group">
+                                    <label for="gender">Gender</label>
+                                    <select id="gender">
+                                        <option value="">Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Professional Information</h3>
+                            
+                            <div class="form-group-row">
+                                <div class="form-group">
+                                    <label for="occupation">Occupation</label>
+                                    <input type="text" id="occupation" placeholder="e.g., Software Engineer">
+                                </div>
+                                <div class="form-group">
+                                    <label for="company">Company</label>
+                                    <input type="text" id="company">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="income">Monthly Income (₹)</label>
+                                <select id="income">
+                                    <option value="">Select Income Range</option>
+                                    <option value="20000-40000">₹20,000 - ₹40,000</option>
+                                    <option value="40000-60000">₹40,000 - ₹60,000</option>
+                                    <option value="60000-100000">₹60,000 - ₹1,00,000</option>
+                                    <option value="100000+">₹1,00,000+</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Preferences</h3>
+                            
+                            <div class="form-group">
+                                <label for="currentCity">Current City</label>
+                                <input type="text" id="currentCity">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Preferred Roommate Gender</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="preferredGender" value="male"> Male</label>
+                                    <label><input type="radio" name="preferredGender" value="female"> Female</label>
+                                    <label><input type="radio" name="preferredGender" value="any"> Any</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Lifestyle Preferences</label>
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" value="non-smoker"> Non-Smoker</label>
+                                    <label><input type="checkbox" value="vegetarian"> Vegetarian</label>
+                                    <label><input type="checkbox" value="pet-friendly"> Pet Friendly</label>
+                                    <label><input type="checkbox" value="early-riser"> Early Riser</label>
+                                    <label><input type="checkbox" value="night-owl"> Night Owl</label>
+                                    <label><input type="checkbox" value="social"> Social Person</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bio">About Me</label>
+                                <textarea id="bio" rows="4" placeholder="Tell us about yourself, your hobbies, lifestyle..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary">Cancel</button>
+                            <button type="submit" class="btn-primary">Save Profile</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FlatMate</h3>
+                    <p>Your trusted platform for finding the perfect flatmate and rental properties.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="../Backend/templates/add-listing.html">Add Listing</a></li>
+                        <li><a href="../Backend/templates/rent-agreement.html">Rent Agreement</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 FlatMate. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../Backend/static/JS/script.js"></script>
+</body>
+</html>

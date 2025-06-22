@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Search Results | FlatMate</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/search.css') }}">
+</head>
+<body>
+<div id="navbar-container"></div>
+  <div class="container">
+    <h1>Find Your Match</h1>
+
+    <div class="filters">
+      <input type="text" id="locationInput" placeholder="Enter location..." />
+      <input type="number" id="budgetInput" placeholder="Max Budget ₹" />
+      <select id="genderInput">
+        <option value="">Any Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+      <select id="lookingInput">
+        <option value="">Looking For</option>
+        <option value="roommate">Roommate</option>
+        <option value="tenant">Tenant</option>
+      </select>
+      <button id="searchBtn">Search</button>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-type="people">People</button>
+      <button class="tab-btn" data-type="properties">Properties</button>
+        <a href="/add-person" class="btn">Add Person</a>
+<a href="/add-property" class="btn">Add Property</a>
+
+
+    </div>
+
+    <div id="resultsContainer" class="results-grid"></div>
+  </div>
+
+<script src="{{ url_for('static', filename='JS/search.js') }}"></script>
+</body>
+</html>

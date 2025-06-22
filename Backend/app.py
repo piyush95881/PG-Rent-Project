@@ -1,10 +1,12 @@
-from dotenv import load_dotenv # we cannot load .env directly either we will have to make it a py file else use dotenv
-from flask import Flask, render_template, jsonify, send_from_directory
+from dotenv import load_dotenv  # we cannot load .env directly either we will have to make it a py file else use dotenv
+from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 from flask_jwt_extended.exceptions import JWTExtendedException
+
 from config import Config
+from extensions import db, jwt, mail, migrate
 from routes import *
-from extensions import mail,db,jwt
+
 load_dotenv()
 def create_app():
     app = Flask(__name__)
@@ -14,6 +16,7 @@ def create_app():
     db.init_app(app)
     jwt.init_app(app)
     mail.init_app(app)
+    migrate.init_app(app, db)
 
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(agreement_bp, url_prefix='/api/agreement')
@@ -22,14 +25,6 @@ def create_app():
     app.register_blueprint(user_bp,url_prefix='/api/user')
     app.register_blueprint(details_bp)
     app.register_blueprint(views_bp)
-
-    @app.route('/search')
-    def search_page():
-        return render_template("search.html")
-
-    @app.route('/details')
-    def details():
-        return render_template('details.html')
 
     @app.route('/uploads/<filename>')
     def uploaded_file(filename):

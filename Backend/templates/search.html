@@ -1,43 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Search Results | FlatMate</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/search.css') }}">
-</head>
-<body>
-<div id="navbar-container"></div>
-  <div class="container">
-    <h1>Find Your Match</h1>
+{% extends "base.html" %}
 
-    <div class="filters">
-      <input type="text" id="locationInput" placeholder="Enter location..." />
-      <input type="number" id="budgetInput" placeholder="Max Budget ₹" />
-      <select id="genderInput">
-        <option value="">Any Gender</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-      </select>
-      <select id="lookingInput">
-        <option value="">Looking For</option>
-        <option value="roommate">Roommate</option>
-        <option value="tenant">Tenant</option>
-      </select>
-      <button id="searchBtn">Search</button>
-    </div>
+{% block title %}Add Listing - RentalApp{% endblock %}
 
-    <div class="tabs">
-      <button class="tab-btn active" data-type="people">People</button>
-      <button class="tab-btn" data-type="properties">Properties</button>
-        <a href="/add-person" class="btn">Add Person</a>
-<a href="/add-property" class="btn">Add Property</a>
+{% block content %}
+    <!-- Search Results -->
+    <section class="search-results">
+        <div class="container">
+            <div class="search-header">
+                <h1>Search Results for <span id="searchCity">City</span></h1>
+                <p>Choose what you're looking for</p>
+            </div>
 
+            <div class="search-options">
+                <div class="option-card" onclick="showRooms()">
+                    <div class="option-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="option-content">
+                        <h3>Find Rooms</h3>
+                        <p>Browse available rooms and apartments for rent</p>
+                        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
 
-    </div>
+                <div class="option-card" onclick="showFlatmates()">
+                    <div class="option-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="option-content">
+                        <h3>Find Flatmates</h3>
+                        <p>Connect with potential roommates in your area</p>
+                        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </div>
 
-    <div id="resultsContainer" class="results-grid"></div>
-  </div>
+            <!-- Results Container -->
+            <div id="resultsContainer" class="results-container" style="display: none;">
+                <div class="results-header">
+                    <h2 id="resultsTitle"></h2>
+                    <div class="filters">
+                        <select id="sortFilter">
+                            <option value="latest">Latest</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="resultsList" class="results-list">
+                    <!-- Results will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
 
-<script src="{{ url_for('static', filename='JS/search.js') }}"></script>
-</body>
-</html>
+{% endblock %}

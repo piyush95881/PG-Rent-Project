@@ -1,8 +1,35 @@
-{% extends "base.html" %}
 
-{% block title %}Add Listing - RentalApp{% endblock %}
-
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlatMate - Find Your Perfect Roommate</title>
+    <link rel="stylesheet" href="../Backend/static/CSS/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <h2>FlatMate</h2>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="../Backend/templates/add-listing.html">Add Listing</a>
+                <a href="../Backend/templates/rent-agreement.html">Rent Agreement</a>
+                <a href="profile.html">Profile</a>
+            </div>
+            <div class="nav-auth">
+                <button class="btn-secondary">Login</button>
+                <button class="btn-primary">Sign Up</button>
+            </div>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -25,7 +52,7 @@
                     </form>
                     <!-- Hero Illustration -->
 <div class="hero-illustration">
-    <img src="image-removebg-preview.png" alt="Illustration of people arranging sticky notes">
+    <img src="../Backend/templates/image-removebg-preview.png" alt="Illustration of people arranging sticky notes">
 </div>
                 </div>
             </div>
@@ -44,7 +71,7 @@
                     <li><i class="fas fa-check"></i> Quick online process</li>
                     <li><i class="fas fa-check"></i> Expert assistance</li>
                 </ul>
-                <a href="/generate-form" class="btn-primary">Create Agreement</a>
+                <a href="../Backend/templates/rent-agreement.html" class="btn-primary">Create Agreement</a>
             </div>
             <div class="agreement-image">
                 <div class="illustration-container">
@@ -148,4 +175,50 @@
         </div>
     </section>
 
-{% endblock %}
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FlatMate</h3>
+                    <p>Your trusted platform for finding the perfect flatmate and rental properties.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="../Backend/templates/add-listing.html">Add Listing</a></li>
+                        <li><a href="../Backend/templates/rent-agreement.html">Rent Agreement</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 FlatMate. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../Backend/static/JS/script.js"></script>
+</body>
+</html>
