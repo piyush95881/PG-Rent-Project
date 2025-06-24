@@ -1,76 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Login | PG Rent</title>
+    <meta charset="UTF-8"/>
+    <title>Login | PG Rent</title>
 
-  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/auth.css') }}">
-  <style>
-    /* Inline fallback or additions if needed */
-    input, button {
-      outline: none;
-    }
-    #errorMsg {
-      color: red;
-      font-size: 0.9rem;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-  </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/auth.css') }}">
+    <style>
+        /* Inline fallback or additions if needed */
+        input, button {
+            outline: none;
+        }
+
+        {##errorMsg {#}
+        {#  color: red;#}
+        {#  font-size: 0.9rem;#}
+        {#  margin-bottom: 10px;#}
+        {#  text-align: center;#}
+        {
+        #}#}
+    </style>
 </head>
 <body>
 
 
 <div class="container" id="container">
-  <!-- Sign Up -->
-  <div class="form-container sign-up-container">
-  <form id="signupForm">
-    <h1>Create Account</h1>
-    <br><br>
-    <span>or use your email for registration</span>
-    <input type="text" id="signupUsername" placeholder="Username" required />
-    <input type="text" id="signupName" placeholder="Full Name" required />
-    <input type="email" id="signupEmail" placeholder="Email" required />
-    <input type="password" id="signupPassword" placeholder="Password" required />
-    <p id="signupError"></p>
-    <button type="submit">Sign Up</button>
-  </form>
-</div>
-
-  <!-- Sign In -->
-  <div class="form-container sign-in-container">
-    <form id="loginForm">
-      <h1>Sign in</h1>
-{#      <div class="social-container">#}
-{#        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>#}
-{#        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>#}
-{#        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>#}
-{#      </div>#}
-        <br><br>
-      <span>or use your account</span>
-      <input type="email" id="loginEmail" placeholder="Email" required />
-      <input type="password" id="loginPassword" placeholder="Password" required />
-      <a href="#">Forgot your password?</a>
-      <p id="loginError"></p>
-      <button type="submit">Sign In</button>
-    </form>
-  </div>
-
-  <!-- Overlay -->
-  <div class="overlay-container">
-    <div class="overlay">
-      <div class="overlay-panel overlay-left">
-        <h1>Welcome Back!</h1>
-        <p>To keep connected with us please login with your personal info</p>
-        <button class="ghost" id="signIn">Sign In</button>
-      </div>
-      <div class="overlay-panel overlay-right">
-        <h1>Hello, Friend!</h1>
-        <p>Enter your personal details and start journey with us</p>
-        <button class="ghost" id="signUp">Sign Up</button>
-      </div>
+    <!-- Sign Up -->
+    <div class="form-container sign-up-container">
+        <form id="signupForm">
+            <h1>Create Account</h1>
+            <br><br>
+            <span>or use your email for registration</span>
+            <label for="signupUsername"></label><input type="text" id="signupUsername" placeholder="Username" required/>
+            <label for="signupName"></label><input type="text" id="signupName" placeholder="Full Name" required/>
+            <label for="signupEmail"></label><input type="email" id="signupEmail" placeholder="Email" required/>
+            <label for="signupPassword"></label><input type="password" id="signupPassword" placeholder="Password"
+                                                       required/>
+            <p id="signupError"></p>
+            <button type="submit">Sign Up</button>
+        </form>
     </div>
-  </div>
+
+    <!-- Sign In -->
+    <div class="form-container sign-in-container">
+        <form id="loginForm">
+            <h1>Sign in</h1>
+            {#      <div class="social-container">#}
+            {#        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>#}
+            {#        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>#}
+            {#        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>#}
+            {#      </div>#}
+            <br><br>
+            <span>or use your account</span>
+            <label for="loginEmail"></label><input type="email" id="loginEmail" placeholder="Email" required/>
+            <label for="loginPassword"></label><input type="password" id="loginPassword" placeholder="Password"
+                                                      required/>
+            <a href="#">Forgot your password?</a>
+            <p id="loginError"></p>
+            <button type="submit">Sign In</button>
+        </form>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Welcome Back!</h1>
+                <p>To keep connected with us please Login with your personal info</p>
+                <button class="ghost" id="signIn">Sign In</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Hello, Friend!</h1>
+                <p>Enter your personal details and start journey with us</p>
+                <button class="ghost" id="signUp">Sign Up</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Font Awesome for icons -->

@@ -109,8 +109,12 @@
                     <label>Annexures (Assets, Furniture, etc.)</label>
                     <div id="annexureList" class="annexures">
                         <div class="annexure-item">
-                            <input type="text" name="annexure_name[]" placeholder="Item Name" required/>
-                            <input type="number" name="annexure_count[]" placeholder="Item Count" required/>
+                            <label>
+                                <input type="text" name="annexure_name[]" placeholder="Item Name" required/>
+                            </label>
+                            <label>
+                                <input type="number" name="annexure_count[]" placeholder="Item Count" required/>
+                            </label>
                         </div>
                     </div>
                     <button type="button" class="btn-secondary" onclick="addAnnexure()">+ Add Item</button>

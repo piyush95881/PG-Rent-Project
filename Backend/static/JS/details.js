@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Images
             const imgSection = document.getElementById("image-section");
 
-            let imgUrl = '';
+            let imgUrl;
             if (type === 'people') {
                 const firstName = data.name?.split(' ')[0] || 'User';
                 imgUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(firstName)}&background=random&bold=true`;

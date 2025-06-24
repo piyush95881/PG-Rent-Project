@@ -29,36 +29,38 @@
                 <div class="filter-row">
                     <div class="filter-group">
                         <label class="filter-label">Location</label>
-                        <input type="text" class="filter-input" placeholder="Enter location" id="locationInput">
+                        <label for="locationInput"></label><input type="text" class="filter-input"
+                                                                  placeholder="Enter location" id="locationInput">
                     </div>
 
                     <div class="filter-group">
                         <label class="filter-label">Max Budget (₹)</label>
-                        <input type="text" class="filter-input" placeholder="Enter max budget" id="budgetInput">
+                        <label for="budgetInput"></label><input type="text" class="filter-input"
+                                                                placeholder="Enter max budget" id="budgetInput">
                     </div>
 
                     <div class="filter-group">
                         <label class="filter-label">Gender Preference</label>
-                        <select class="filter-select" id="genderInput">
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Any">Any</option>
-                        </select>
+                        <label for="genderInput"></label><select class="filter-select" id="genderInput">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Any">Any</option>
+                    </select>
                     </div>
 
                     <div class="filter-group">
                         <label class="filter-label">Looking For</label>
-                        <select class="filter-select" id="lookingInput">
-                            <option value="Roommate">Roommate</option>
-                            <option value="Room">Room</option>
-                        </select>
+                        <label for="lookingInput"></label><select class="filter-select" id="lookingInput">
+                        <option value="Roommate">Roommate</option>
+                        <option value="Room">Room</option>
+                    </select>
                     </div>
                     <div class="filter-group">
                         <label class="filter-label">Search Type</label>
-                        <select class="filter-select" id="searchTypeSelect">
-                            <option value="people">People</option>
-                            <option value="properties">Properties</option>
-                        </select>
+                        <label for="searchTypeSelect"></label><select class="filter-select" id="searchTypeSelect">
+                        <option value="people">People</option>
+                        <option value="properties">Properties</option>
+                    </select>
                     </div>
 
                 </div>
@@ -82,12 +84,14 @@
                 <h2 class="results-title" id="resultsTitle">Search Results</h2>
                 <div class="results-controls">
                     <a href="#" class="back-link">← Back to options</a>
-                    <select class="sort-select">
-                        <option>Latest</option>
-                        <option>Price: Low to High</option>
-                        <option>Price: High to Low</option>
-                        <option>Distance</option>
-                    </select>
+                    <label>
+                        <select class="sort-select">
+                            <option>Latest</option>
+                            <option>Price: Low to High</option>
+                            <option>Price: High to Low</option>
+                            <option>Distance</option>
+                        </select>
+                    </label>
                 </div>
             </div>
 
