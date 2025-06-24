@@ -6,129 +6,132 @@
 
     <!-- Rent Agreement Form -->
     <section class="form-section">
-  <div class="container">
-    <div class="form-header">
-      <h1>Create Rent Agreement</h1>
-      <p>Fill in the details to generate your legal rent agreement</p>
-    </div>
+        <div class="container">
+            <div class="form-header">
+                <h1>Create Rent Agreement</h1>
+                <p>Fill in the details to generate your legal rent agreement</p>
+            </div>
 
-    <form id="rentAgreementForm" class="form-container" novalidate>
+            <form id="rentAgreementForm" class="form-container" novalidate>
 
-      <!-- Owner / Landlord Info -->
-      <div class="form-group-row">
-        <div class="form-group">
-          <label for="landlordName">Landlord Name *</label>
-          <input type="text" id="landlordName" name="fullName" required />
+                <!-- Owner / Landlord Info -->
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label for="landlordName">Landlord Name *</label>
+                        <input type="text" id="landlordName" name="fullName" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="landlordPhone">Landlord Phone *</label>
+                        <input type="tel" id="landlordPhone" name="mobileNumber" required/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ownerAddress">Landlord Address *</label>
+                    <input type="text" id="ownerAddress" name="address" required/>
+                </div>
+
+                <!-- Tenant Info -->
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label for="tenantName">Tenant Name *</label>
+                        <input type="text" id="tenantName" name="tenantName" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="tenantPhone">Tenant Phone *</label>
+                        <input type="tel" id="tenantPhone" name="tenantPhone" required/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="tenantAddress">Tenant Address *</label>
+                    <input type="text" id="tenantAddress" name="tenantAddress" required/>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Tenant Email *</label>
+                    <input type="email" id="email" name="email" required/>
+                </div>
+
+                <!-- Property Info -->
+                <div class="form-group">
+                    <label for="propertyAddress">Property Address *</label>
+                    <input type="text" id="propertyAddress" name="propertyAddress" required/>
+                </div>
+
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label for="city">City *</label>
+                        <input type="text" id="city" name="city" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State *</label>
+                        <input type="text" id="state" name="state" required/>
+                    </div>
+                </div>
+
+                <!-- Rental Terms -->
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label for="monthlyRent">Monthly Rent (₹) *</label>
+                        <input type="number" id="monthlyRent" name="rent" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="securityDeposit">Security Deposit (₹) *</label>
+                        <input type="number" id="securityDeposit" name="deposit" required/>
+                    </div>
+                </div>
+
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label for="leaseStart">Lease Start Date *</label>
+                        <input type="date" id="leaseStart" name="startDate" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="leaseEnd">Lease End Date *</label>
+                        <input type="date" id="leaseEnd" name="endDate" required/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="leaseDuration">Lease Duration (months) *</label>
+                    <select id="leaseDuration" name="leaseDuration" required>
+                        <option value="">Select Duration</option>
+                        <option value="11">11 Months</option>
+                        <option value="12">12 Months</option>
+                        <option value="24">24 Months</option>
+                        <option value="36">36 Months</option>
+                    </select>
+                </div>
+
+                <!-- Annexures -->
+                <div class="form-group">
+                    <label>Annexures (Assets, Furniture, etc.)</label>
+                    <div id="annexureList" class="annexures">
+                        <div class="annexure-item">
+                            <input type="text" name="annexure_name[]" placeholder="Item Name" required/>
+                            <input type="number" name="annexure_count[]" placeholder="Item Count" required/>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-secondary" onclick="addAnnexure()">+ Add Item</button>
+                </div>
+
+                <!-- Additional Terms -->
+                <div class="form-group">
+                    <label for="additionalTerms">Additional Terms & Conditions</label>
+                    <textarea id="additionalTerms" name="additionalTerms" rows="4"
+                              placeholder="Enter any additional terms..."></textarea>
+                </div>
+
+                <!-- Actions -->
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary">Save as Draft</button>
+                    <button type="submit" class="btn-primary">Generate Agreement</button>
+                </div>
+            </form>
         </div>
-        <div class="form-group">
-          <label for="landlordPhone">Landlord Phone *</label>
-          <input type="tel" id="landlordPhone" name="mobileNumber" required />
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="ownerAddress">Landlord Address *</label>
-        <input type="text" id="ownerAddress" name="address" required />
-      </div>
-
-      <!-- Tenant Info -->
-      <div class="form-group-row">
-        <div class="form-group">
-          <label for="tenantName">Tenant Name *</label>
-          <input type="text" id="tenantName" name="tenantName" required />
-        </div>
-        <div class="form-group">
-          <label for="tenantPhone">Tenant Phone *</label>
-          <input type="tel" id="tenantPhone" name="tenantPhone" required />
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="tenantAddress">Tenant Address *</label>
-        <input type="text" id="tenantAddress" name="tenantAddress" required />
-      </div>
-
-      <div class="form-group">
-        <label for="email">Tenant Email *</label>
-        <input type="email" id="email" name="email" required />
-      </div>
-
-      <!-- Property Info -->
-      <div class="form-group">
-        <label for="propertyAddress">Property Address *</label>
-        <input type="text" id="propertyAddress" name="propertyAddress" required />
-      </div>
-
-      <div class="form-group-row">
-        <div class="form-group">
-          <label for="city">City *</label>
-          <input type="text" id="city" name="city" required />
-        </div>
-        <div class="form-group">
-          <label for="state">State *</label>
-          <input type="text" id="state" name="state" required />
-        </div>
-      </div>
-
-      <!-- Rental Terms -->
-      <div class="form-group-row">
-        <div class="form-group">
-          <label for="monthlyRent">Monthly Rent (₹) *</label>
-          <input type="number" id="monthlyRent" name="rent" required />
-        </div>
-        <div class="form-group">
-          <label for="securityDeposit">Security Deposit (₹) *</label>
-          <input type="number" id="securityDeposit" name="deposit" required />
-        </div>
-      </div>
-
-      <div class="form-group-row">
-        <div class="form-group">
-          <label for="leaseStart">Lease Start Date *</label>
-          <input type="date" id="leaseStart" name="startDate" required />
-        </div>
-        <div class="form-group">
-          <label for="leaseEnd">Lease End Date *</label>
-          <input type="date" id="leaseEnd" name="endDate" required />
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="leaseDuration">Lease Duration (months) *</label>
-        <select id="leaseDuration" name="leaseDuration" required>
-          <option value="">Select Duration</option>
-          <option value="11">11 Months</option>
-          <option value="12">12 Months</option>
-          <option value="24">24 Months</option>
-          <option value="36">36 Months</option>
-        </select>
-      </div>
-
-      <!-- Annexures -->
-      <div class="form-group">
-        <label>Annexures (Assets, Furniture, etc.)</label>
-        <div id="annexureList" class="annexures">
-          <div class="annexure-item">
-            <input type="text" name="annexure_name[]" placeholder="Item Name" required />
-            <input type="number" name="annexure_count[]" placeholder="Item Count" required />
-          </div>
-        </div>
-        <button type="button" class="btn-secondary" onclick="addAnnexure()">+ Add Item</button>
-      </div>
-
-      <!-- Additional Terms -->
-      <div class="form-group">
-        <label for="additionalTerms">Additional Terms & Conditions</label>
-        <textarea id="additionalTerms" name="additionalTerms" rows="4" placeholder="Enter any additional terms..."></textarea>
-      </div>
-
-      <!-- Actions -->
-      <div class="form-actions">
-        <button type="button" class="btn-secondary">Save as Draft</button>
-        <button type="submit" class="btn-primary">Generate Agreement</button>
-      </div>
-    </form>
-  </div>
-</section>
-
+    </section>
+{% endblock %}
+{% block extra_js %}
+    <script src="{{ url_for('static',filename='JS/rent-agreement.js') }}"></script>
 {% endblock %}

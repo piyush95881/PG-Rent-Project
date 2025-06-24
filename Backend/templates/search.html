@@ -2,56 +2,105 @@
 
 {% block title %}Add Listing - RentalApp{% endblock %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/search.css') }}">
+{% endblock %}
+
 {% block content %}
-    <!-- Search Results -->
-    <section class="search-results">
-        <div class="container">
-            <div class="search-header">
-                <h1>Search Results for <span id="searchCity">City</span></h1>
-                <p>Choose what you're looking for</p>
-            </div>
+    <main class="main-content">
 
-            <div class="search-options">
-                <div class="option-card" onclick="showRooms()">
-                    <div class="option-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <div class="option-content">
-                        <h3>Find Rooms</h3>
-                        <p>Browse available rooms and apartments for rent</p>
-                        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-                    </div>
-                </div>
+        <!-- Search Header -->
+        <div class="search-header">
+            <h1 class="search-title" id="searchTitle">Search Results</h1>
+            <p class="search-subtitle">Find your perfect match with advanced filters</p>
+        </div>
 
-                <div class="option-card" onclick="showFlatmates()">
-                    <div class="option-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="option-content">
-                        <h3>Find Flatmates</h3>
-                        <p>Connect with potential roommates in your area</p>
-                        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-                    </div>
-                </div>
-            </div>
+        <!-- Tabs -->
+        {#        <div class="tab-bar">#}
+        {#            <button class="tab-btn active" data-type="people">People</button>#}
+        {#            <button class="tab-btn" data-type="properties">Properties</button>#}
+        {#        </div>#}
 
-            <!-- Results Container -->
-            <div id="resultsContainer" class="results-container" style="display: none;">
-                <div class="results-header">
-                    <h2 id="resultsTitle"></h2>
-                    <div class="filters">
-                        <select id="sortFilter">
-                            <option value="latest">Latest</option>
-                            <option value="price-low">Price: Low to High</option>
-                            <option value="price-high">Price: High to Low</option>
+        <!-- Advanced Search -->
+        <section class="advanced-search fade-in">
+            <h2 class="search-section-title">🔍 Advanced Search</h2>
+
+            <form id="searchForm">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label class="filter-label">Location</label>
+                        <input type="text" class="filter-input" placeholder="Enter location" id="locationInput">
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Max Budget (₹)</label>
+                        <input type="text" class="filter-input" placeholder="Enter max budget" id="budgetInput">
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Gender Preference</label>
+                        <select class="filter-select" id="genderInput">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Any">Any</option>
                         </select>
                     </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Looking For</label>
+                        <select class="filter-select" id="lookingInput">
+                            <option value="Roommate">Roommate</option>
+                            <option value="Room">Room</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Search Type</label>
+                        <select class="filter-select" id="searchTypeSelect">
+                            <option value="people">People</option>
+                            <option value="properties">Properties</option>
+                        </select>
+                    </div>
+
                 </div>
-                <div id="resultsList" class="results-list">
-                    <!-- Results will be populated by JavaScript -->
+
+                <div class="filter-buttons">
+                    <button type="submit" class="apply-btn" id="searchBtn">
+                        🔍 Apply Filters
+                    </button>
+                    <button type="button" class="clear-btn" onclick="clearFilters()">Clear Filters</button>
+                </div>
+            </form>
+
+            <div class="results-info" id="resultsInfo">
+                Enter search criteria and click "Apply Filters" to find matches
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section fade-in">
+            <div class="results-header">
+                <h2 class="results-title" id="resultsTitle">Search Results</h2>
+                <div class="results-controls">
+                    <a href="#" class="back-link">← Back to options</a>
+                    <select class="sort-select">
+                        <option>Latest</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                        <option>Distance</option>
+                    </select>
                 </div>
             </div>
-        </div>
-    </section>
 
+            <div class="results-wrapper" id="resultsContainer">
+                <h3>Ready to search</h3>
+                <p>Enter your search criteria above and click "Apply Filters" to find roommates and rooms.</p>
+            </div>
+            <div id="paginationContainer" class="pagination-controls" style="text-align:center; margin-top:20px;"></div>
+        </section>
+
+    </main>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='JS/search.js') }}"></script>
 {% endblock %}

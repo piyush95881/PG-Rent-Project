@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,54 +9,55 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <a href="index.html">
-                    <h2>FlatMate</h2>
-                </a>
-            </div>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="../Backend/templates/add-listing.html">Add Listing</a>
-                <a href="../Backend/templates/rent-agreement.html">Rent Agreement</a>
-                <a href="profile.html">Profile</a>
-            </div>
-            <div class="nav-auth">
-                <button class="btn-secondary">Login</button>
-                <button class="btn-primary">Sign Up</button>
-            </div>
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="container">
+        <div class="nav-brand">
+            <a href="index.html">
+                <h2>FlatMate</h2>
+            </a>
         </div>
-    </nav>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="../Backend/templates/add-listing.html">Add Listing</a>
+            <a href="../Backend/templates/rent-agreement.html">Rent Agreement</a>
+            <a href="profile.html">Profile</a>
+        </div>
+        <div class="nav-auth">
+            <button class="btn-secondary">Login</button>
+            <button class="btn-primary">Sign Up</button>
+        </div>
+    </div>
+</nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Find Your Perfect Flatmate</h1>
-                <p>Connect with compatible roommates and discover your ideal living space</p>
-                
-                <!-- Search Area -->
-                <div class="search-container">
-                    <form id="searchForm" class="search-form">
-                        <div class="search-input">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <input type="text" id="cityInput" placeholder="Enter city name..." required>
-                        </div>
-                        <button type="submit" class="btn-search">
-                            <i class="fas fa-search"></i>
-                            Search
-                        </button>
-                    </form>
-                    <!-- Hero Illustration -->
-<div class="hero-illustration">
-    <img src="../Backend/templates/image-removebg-preview.png" alt="Illustration of people arranging sticky notes">
-</div>
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Find Your Perfect Flatmate</h1>
+            <p>Connect with compatible roommates and discover your ideal living space</p>
+
+            <!-- Search Area -->
+            <div class="search-container">
+                <form id="searchForm" class="search-form">
+                    <div class="search-input">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <input type="text" id="cityInput" placeholder="Enter city name..." required>
+                    </div>
+                    <button type="submit" class="btn-search">
+                        <i class="fas fa-search"></i>
+                        Search
+                    </button>
+                </form>
+                <!-- Hero Illustration -->
+                <div class="hero-illustration">
+                    <img src="../Backend/static/images/image-removebg-preview.png"
+                         alt="Illustration of people arranging sticky notes">
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 <!-- Rent Agreement Section -->
 <section class="rent-agreement-section">
@@ -65,7 +65,8 @@
         <div class="agreement-content">
             <div class="agreement-text">
                 <h2>Digital Rent Agreement</h2>
-                <p>Create legally valid rent agreements online in minutes. Save time and money with our digital solution.</p>
+                <p>Create legally valid rent agreements online in minutes. Save time and money with our digital
+                    solution.</p>
                 <ul>
                     <li><i class="fas fa-check"></i> Legally valid documents</li>
                     <li><i class="fas fa-check"></i> Quick online process</li>
@@ -113,112 +114,121 @@
 
 <!-- Premium Properties Section -->
 <section class="premium-properties">
-  <div class="container premium-container">
-    <div class="premium-text">
-      <h2>Are you looking for <br> Premium Properties?</h2>
-      <p>View and book your appointment with our partners</p>
-      <a href="#" class="btn-premium">View Properties <i class="fas fa-chevron-right"></i></a>
+    <div class="container premium-container">
+        <div class="premium-text">
+            <h2>Are you looking for <br> Premium Properties?</h2>
+            <p>View and book your appointment with our partners</p>
+            <a href="#" class="btn-premium">View Properties <i class="fas fa-chevron-right"></i></a>
+        </div>
+        <div class="premium-images">
+            <img src="https://5.imimg.com/data5/SELLER/Default/2022/5/HV/ZZ/LI/106321217/luxury-bedroom-interior-design-service.jpg"
+                 alt="Luxury Room 1" class="img-top"/>
+            <img src="https://i.pinimg.com/originals/b7/4e/77/b74e77d801f61d4653b4e5d5d652d541.jpg" alt="Luxury Room 2"
+                 class="img-bottom"/>
+        </div>
     </div>
-    <div class="premium-images">
-      <img src="https://5.imimg.com/data5/SELLER/Default/2022/5/HV/ZZ/LI/106321217/luxury-bedroom-interior-design-service.jpg" alt="Luxury Room 1" class="img-top" />
-      <img src="https://i.pinimg.com/originals/b7/4e/77/b74e77d801f61d4653b4e5d5d652d541.jpg" alt="Luxury Room 2" class="img-bottom" />
-    </div>
-  </div>
 </section>
 
-    <!-- Popular Cities -->
-    <section class="popular-cities">
-        <div class="container">
-            <h2>Popular Cities</h2>
-            <div class="cities-grid">
-                <div class="city-card" onclick="searchCity('Mumbai')">
-                    <img src="https://godrejmumbai.in/images/apartments-in-south-mumbai.jpg" alt="Mumbai" class="city-image" />
-                    <h3>Mumbai</h3>
-                    <p>1200+ listings</p>
-                </div>
-                <div class="city-card" onclick="searchCity('Delhi')">
-                    <img src="https://www.luxuryresidences.in/seo-assest/images/delhi/dlf-kings-court.jpg" alt="Delhi" class="city-image" />
-                    <h3>Delhi</h3>
-                    <p>980+ listings</p>
-                </div>
-                <div class="city-card" onclick="searchCity('Bangalore')">
-                    <img src="https://www.prestigesraintreepark.info/images/prestige/prestige-apartments-in-bangalore-for-sale-2024.webp" alt="Bangalore" class="city-image" />
-                    <h3>Bangalore</h3>
-                    <p>850+ listings</p>
-                </div>
-                <div class="city-card" onclick="searchCity('Pune')">
-                    <img src="https://www.adanirealty.com/-/media/project/realty/residential/pune/atelier-greens/carousel-images/thumbnail-image/1.ashx" alt="Pune" class="city-image" />
-                    <h3>Pune</h3>
-                    <p>650+ listings</p>
-                </div>
-                <div class="city-card" onclick="searchCity('Hyderabad')">
-                    <img src="https://cybercity.in/images/cybercity-blogs/2-3-4-bhk-apartments-for-sale-near-hitec-city-hyderabad.jpg" alt="Hyderabad" class="city-image" />
-                    <h3>Hyderabad</h3>
-                    <p>520+ listings</p>
-                </div>
-                <div class="city-card" onclick="searchCity('Chennai')">
-                    <img src="https://www.chennaiproperties.in/projectsgallery/6558/salepageimages/TVS_Emerald_Verde_Vista_1.jpg" alt="Chennai" class="city-image" />
-                    <h3>Chennai</h3>
-                    <p>480+ listings</p>
-                </div>
-                <div class="city-card" onclick="searchCity('Kolkata')">
-                    <img src="https://destinationcompress.s3.ap-south-1.amazonaws.com/df3dd4f1-1c42-4208-a927-ec048f1ca841.jpg" alt="Kolkata" class="city-image" />
-                    <h3>Kolkata</h3>
-                    <p>440+ listings</p>
-                </div>
-                <div class="city-card" onclick="searchCity('Chandigarh')">
-                    <img src="https://destinationcompress.s3.ap-south-1.amazonaws.com/8d85110d-6403-4713-9a93-3393855b0a36.jpg" alt="Chandigarh" class="city-image" />
-                    <h3>Chandigarh</h3>
-                    <p>510+ listings</p>
+<!-- Popular Cities -->
+<section class="popular-cities">
+    <div class="container">
+        <h2>Popular Cities</h2>
+        <div class="cities-grid">
+            <div class="city-card" onclick="searchCity('Mumbai')">
+                <img src="https://godrejmumbai.in/images/apartments-in-south-mumbai.jpg" alt="Mumbai"
+                     class="city-image"/>
+                <h3>Mumbai</h3>
+                <p>1200+ listings</p>
+            </div>
+            <div class="city-card" onclick="searchCity('Delhi')">
+                <img src="https://www.luxuryresidences.in/seo-assest/images/delhi/dlf-kings-court.jpg" alt="Delhi"
+                     class="city-image"/>
+                <h3>Delhi</h3>
+                <p>980+ listings</p>
+            </div>
+            <div class="city-card" onclick="searchCity('Bangalore')">
+                <img src="https://www.prestigesraintreepark.info/images/prestige/prestige-apartments-in-bangalore-for-sale-2024.webp"
+                     alt="Bangalore" class="city-image"/>
+                <h3>Bangalore</h3>
+                <p>850+ listings</p>
+            </div>
+            <div class="city-card" onclick="searchCity('Pune')">
+                <img src="https://www.adanirealty.com/-/media/project/realty/residential/pune/atelier-greens/carousel-images/thumbnail-image/1.ashx"
+                     alt="Pune" class="city-image"/>
+                <h3>Pune</h3>
+                <p>650+ listings</p>
+            </div>
+            <div class="city-card" onclick="searchCity('Hyderabad')">
+                <img src="https://cybercity.in/images/cybercity-blogs/2-3-4-bhk-apartments-for-sale-near-hitec-city-hyderabad.jpg"
+                     alt="Hyderabad" class="city-image"/>
+                <h3>Hyderabad</h3>
+                <p>520+ listings</p>
+            </div>
+            <div class="city-card" onclick="searchCity('Chennai')">
+                <img src="https://www.chennaiproperties.in/projectsgallery/6558/salepageimages/TVS_Emerald_Verde_Vista_1.jpg"
+                     alt="Chennai" class="city-image"/>
+                <h3>Chennai</h3>
+                <p>480+ listings</p>
+            </div>
+            <div class="city-card" onclick="searchCity('Kolkata')">
+                <img src="https://destinationcompress.s3.ap-south-1.amazonaws.com/df3dd4f1-1c42-4208-a927-ec048f1ca841.jpg"
+                     alt="Kolkata" class="city-image"/>
+                <h3>Kolkata</h3>
+                <p>440+ listings</p>
+            </div>
+            <div class="city-card" onclick="searchCity('Chandigarh')">
+                <img src="https://destinationcompress.s3.ap-south-1.amazonaws.com/8d85110d-6403-4713-9a93-3393855b0a36.jpg"
+                     alt="Chandigarh" class="city-image"/>
+                <h3>Chandigarh</h3>
+                <p>510+ listings</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>FlatMate</h3>
+                <p>Your trusted platform for finding the perfect flatmate and rental properties.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="../Backend/templates/add-listing.html">Add Listing</a></li>
+                    <li><a href="../Backend/templates/rent-agreement.html">Rent Agreement</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
         </div>
-    </section>
-
-
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>FlatMate</h3>
-                    <p>Your trusted platform for finding the perfect flatmate and rental properties.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="../Backend/templates/add-listing.html">Add Listing</a></li>
-                        <li><a href="../Backend/templates/rent-agreement.html">Rent Agreement</a></li>
-                        <li><a href="profile.html">Profile</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Connect</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 FlatMate. All rights reserved.</p>
-            </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 FlatMate. All rights reserved.</p>
         </div>
-    </footer>
+    </div>
+</footer>
 
-    <script src="../Backend/static/JS/script.js"></script>
+<script src="../Backend/static/JS/script.js"></script>
 </body>
 </html>
