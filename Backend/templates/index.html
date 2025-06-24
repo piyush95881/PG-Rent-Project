@@ -1,244 +1,166 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlatMate - Find Your Perfect Flatmate or Room</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/index.css') }}">
-</head>
-<body>
-{#    <header class="header">#}
-{#        <div class="logo">FlatMate</div>#}
-{#        #}
-{#        <nav class="nav">#}
-{#            <a href="#find-rooms">Find Rooms</a>#}
-{#            <a href="#list-property">List Property</a>#}
-{#            <a href="#find-flatmates">Find Flatmates</a>#}
-{#            <a href="#how-it-works">How it Works</a>#}
-{#        </nav>#}
-{#        #}
-{#        <div class="auth-section">#}
-{#            <a href="#wishlist" class="wishlist">#}
-{#                <svg class="icon" viewBox="0 0 24 24">#}
-{#                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>#}
-{#                </svg>#}
-{#                Wishlist#}
-{#            </a>#}
-{#            <a href="/profile/prof_index.html">#}
-{#            <button class="login-btn">#}
-{#                <svg class="icon" viewBox="0 0 24 24">#}
-{#                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>#}
-{#                </svg>#}
-{#                Profile#}
-{#            </button>#}
-{#        </a>#}
-{#            <button id="signupBtn" class="signup-btn" href="/login.html">Login/Signup</button>#}
-{##}
-{#        </div>#}
-{#    </header>#}
-    <div id="navbar-container"></div>
+{% extends "base.html" %}
 
-    <main class="main-content">
-        <h1 class="main-title">
-            Find Your Perfect <span class="highlight-blue">Flatmate</span> or <span class="highlight-orange">Room</span>
-        </h1>
-        
-        <p class="subtitle">
-            India's largest platform for finding rooms, flatmates, and PG accommodations. Join thousands of happy residents who found their perfect match!
-        </p>
+{% block title %}Add Listing - RentalApp{% endblock %}
 
-        <div class="search-card">
-            <div class="tab-buttons">
-                <button class="tab-btn active" onclick="setActiveTab('rooms')">
-                    <svg class="icon" viewBox="0 0 24 24">
-                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-                    </svg>
-                    Find Rooms
-                </button>
-                <button class="tab-btn" onclick="setActiveTab('flatmates')">
-                    <svg class="icon" viewBox="0 0 24 24">
-                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                    </svg>
-                    Find Flatmates
-                </button>
-                <button class="tab-btn" onclick="setActiveTab('pg')">
-                    <svg class="icon" viewBox="0 0 24 24">
-                        <path d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a1 1 0 0 0-1 1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a1 1 0 0 0-1-1zM10 6a2 2 0 0 1 4 0v1h-4V6zm8 13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9h2v1a1 1 0 0 0 2 0V9h4v1a1 1 0 0 0 2 0V9h2v10z"/>
-                    </svg>
-                    Find PG
-                </button>
-            </div>
+{% block content %}
 
-            <form class="search-form" onsubmit="handleSearch(event)">
-                <div class="form-group">
-                    <label class="form-label">Location</label>
-                    <input type="text" class="form-input" placeholder="Enter city, locality, or landmark" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Budget</label>
-                    <input type="text" class="form-input" placeholder="₹ Budget" required>
-                </div>
-                <button type="submit" class="search-btn">
-                    <svg class="icon" viewBox="0 0 24 24">
-                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                    </svg>
-                    Search
-                </button>
-            </form>
-        </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Find Your Perfect Flatmate</h1>
+                <p>Connect with compatible roommates and discover your ideal living space</p>
 
-        <div class="stats">
-            <div class="stat-item">
-                <div class="stat-number">50K+</div>
-                <div class="stat-label">Active Listings</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">2L+</div>
-                <div class="stat-label">Happy Customers</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">25+</div>
-                <div class="stat-label">Cities Covered</div>
-            </div>
-        </div>
-    </main>
-<div class="container">
-        <div class="header2">
-            <h1>Popular Cities</h1>
-            <p>Find rooms and flatmates in India's top cities</p>
-        </div>
-
-        <div class="cities-grid">
-            <div class="city-card" onclick="navigateToCity('bangalore')">
-                <div class="city-bg bangalore"></div>
-                <div class="popular-badge">Popular</div>
-                <div class="city-content">
-                    <h3 class="city-name">Bangalore</h3>
-                    <div class="property-count">
-                        <svg class="location-icon" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-                        </svg>
-                        15,000+ properties
-                    </div>
-                </div>
-            </div>
-
-            <div class="city-card" onclick="navigateToCity('mumbai')">
-                <div class="city-bg mumbai"></div>
-                <div class="popular-badge">Popular</div>
-                <div class="city-content">
-                    <h3 class="city-name">Mumbai</h3>
-                    <div class="property-count">
-                        <svg class="location-icon" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-                        </svg>
-                        12,000+ properties
-                    </div>
-                </div>
-            </div>
-
-            <div class="city-card" onclick="navigateToCity('delhi')">
-                <div class="city-bg delhi"></div>
-                <div class="popular-badge">Popular</div>
-                <div class="city-content">
-                    <h3 class="city-name">Delhi</h3>
-                    <div class="property-count">
-                        <svg class="location-icon" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-                        </svg>
-                        10,000+ properties
-                    </div>
-                </div>
-            </div>
-
-            <div class="city-card" onclick="navigateToCity('hyderabad')">
-                <div class="city-bg hyderabad"></div>
-                <div class="city-content">
-                    <h3 class="city-name">Hyderabad</h3>
-                    <div class="property-count">
-                        <svg class="location-icon" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-                        </svg>
-                        8,000+ properties
-                    </div>
-                </div>
-            </div>
-
-            <div class="city-card" onclick="navigateToCity('chennai')">
-                <div class="city-bg chennai"></div>
-                <div class="city-content">
-                    <h3 class="city-name">Chennai</h3>
-                    <div class="property-count">
-                        <svg class="location-icon" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-                        </svg>
-                        7,500+ properties
-                    </div>
-                </div>
-            </div>
-
-            <div class="city-card" onclick="navigateToCity('pune')">
-                <div class="city-bg pune"></div>
-                <div class="city-content">
-                    <h3 class="city-name">Pune</h3>
-                    <div class="property-count">
-                        <svg class="location-icon" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-                        </svg>
-                        6,500+ properties
+                <!-- Search Area -->
+                <div class="search-container">
+                    <form id="searchForm" class="search-form">
+                        <div class="search-input">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <label for="cityInput"></label><input type="text" id="cityInput"
+                                                                  placeholder="Enter city name..." required>
+                        </div>
+                        <button type="submit" class="btn-search">
+                            <i class="fas fa-search"></i>
+                            Search
+                        </button>
+                    </form>
+                    <!-- Hero Illustration -->
+                    <div class="hero-illustration">
+                        <img src="../static/images/image-removebg-preview.png"
+                             alt="Illustration of people arranging sticky notes">
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="floating-elements">
-        <div class="floating-shape shape1"></div>
-        <div class="floating-shape shape2"></div>
-        <div class="floating-shape shape3"></div>
-    </div>
+    </section>
 
-    <div class="container2">
-        <div class="content-section">
-            <h1 class="main-heading">Getting Rental Agreement made easy, quick and affordable</h1>
-            <p class="subheading">Lowest Price Guaranteed! Create your rental agreement online in minutes</p>
-            <button class="cta-button" onclick="createAgreement()">Create Now ›</button>
-        </div>
-
-        <div class="illustration-section">
-            <div class="illustration-container">
-                <div class="document">
-                    <div class="document-header"></div>
-                    <div class="document-lines">
-                        <div class="document-line"></div>
-                        <div class="document-line"></div>
-                        <div class="document-line"></div>
-                        <div class="document-line"></div>
-                        <div class="document-line"></div>
-                    </div>
-                    <div class="signature">lea</div>
-                    <div class="handshake-area"></div>
+    <!-- Rent Agreement Section -->
+    <section class="rent-agreement-section">
+        <div class="container">
+            <div class="agreement-content">
+                <div class="agreement-text">
+                    <h2>Digital Rent Agreement</h2>
+                    <p>Create legally valid rent agreements online in minutes. Save time and money with our digital
+                        solution.</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Legally valid documents</li>
+                        <li><i class="fas fa-check"></i> Quick online process</li>
+                        <li><i class="fas fa-check"></i> Expert assistance</li>
+                    </ul>
+                    <a href="/generate-form" class="btn-primary">Create Agreement</a>
                 </div>
+                <div class="agreement-image">
+                    <div class="illustration-container">
+                        <div class="document">
+                            <div class="document-header"></div>
+                            <div class="document-lines">
+                                <div class="document-line"></div>
+                                <div class="document-line"></div>
+                                <div class="document-line"></div>
+                                <div class="document-line"></div>
+                                <div class="document-line"></div>
+                            </div>
+                            <div class="signature">lea</div>
+                            <div class="handshake-area"></div>
+                        </div>
 
-                <div class="person1">
-                    <div class="person-head"></div>
-                    <div class="person-body"></div>
-                    <div class="person-legs">
-                        <div class="leg"></div>
-                        <div class="leg"></div>
-                    </div>
-                </div>
+                        <div class="person1">
+                            <div class="person-head"></div>
+                            <div class="person-body"></div>
+                            <div class="person-legs">
+                                <div class="leg"></div>
+                                <div class="leg"></div>
+                            </div>
+                        </div>
 
-                <div class="person2">
-                    <div class="person-head"></div>
-                    <div class="person-body"></div>
-                    <div class="person-legs">
-                        <div class="leg"></div>
-                        <div class="leg"></div>
+                        <div class="person2">
+                            <div class="person-head"></div>
+                            <div class="person-body"></div>
+                            <div class="person-legs">
+                                <div class="leg"></div>
+                                <div class="leg"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="{{ url_for('static', filename='JS/index.js') }}"></script>
-</body>
-</html>
+    </section>
+
+    <!-- Premium Properties Section -->
+    <section class="premium-properties">
+        <div class="container premium-container">
+            <div class="premium-text">
+                <h2>Are you looking for <br> Premium Properties?</h2>
+                <p>View and book your appointment with our partners</p>
+                <a href="#" class="btn-premium">View Properties <i class="fas fa-chevron-right"></i></a>
+            </div>
+            <div class="premium-images">
+                <img src="https://5.imimg.com/data5/SELLER/Default/2022/5/HV/ZZ/LI/106321217/luxury-bedroom-interior-design-service.jpg"
+                     alt="Luxury Room 1" class="img-top"/>
+                <img src="https://i.pinimg.com/originals/b7/4e/77/b74e77d801f61d4653b4e5d5d652d541.jpg"
+                     alt="Luxury Room 2" class="img-bottom"/>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Cities -->
+    <section class="popular-cities">
+        <div class="container">
+            <h2>Popular Cities</h2>
+            <div class="cities-grid">
+                <div class="city-card" onclick="searchCity('Mumbai')">
+                    <img src="https://godrejmumbai.in/images/apartments-in-south-mumbai.jpg" alt="Mumbai"
+                         class="city-image"/>
+                    <h3>Mumbai</h3>
+                    <p>1200+ listings</p>
+                </div>
+                <div class="city-card" onclick="searchCity('Delhi')">
+                    <img src="https://www.luxuryresidences.in/seo-assest/images/delhi/dlf-kings-court.jpg" alt="Delhi"
+                         class="city-image"/>
+                    <h3>Delhi</h3>
+                    <p>980+ listings</p>
+                </div>
+                <div class="city-card" onclick="searchCity('Bangalore')">
+                    <img src="https://www.prestigesraintreepark.info/images/prestige/prestige-apartments-in-bangalore-for-sale-2024.webp"
+                         alt="Bangalore" class="city-image"/>
+                    <h3>Bangalore</h3>
+                    <p>850+ listings</p>
+                </div>
+                <div class="city-card" onclick="searchCity('Pune')">
+                    <img src="https://www.adanirealty.com/-/media/project/realty/residential/pune/atelier-greens/carousel-images/thumbnail-image/1.ashx"
+                         alt="Pune" class="city-image"/>
+                    <h3>Pune</h3>
+                    <p>650+ listings</p>
+                </div>
+                <div class="city-card" onclick="searchCity('Hyderabad')">
+                    <img src="https://cybercity.in/images/cybercity-blogs/2-3-4-bhk-apartments-for-sale-near-hitec-city-hyderabad.jpg"
+                         alt="Hyderabad" class="city-image"/>
+                    <h3>Hyderabad</h3>
+                    <p>520+ listings</p>
+                </div>
+                <div class="city-card" onclick="searchCity('Chennai')">
+                    <img src="https://www.chennaiproperties.in/projectsgallery/6558/salepageimages/TVS_Emerald_Verde_Vista_1.jpg"
+                         alt="Chennai" class="city-image"/>
+                    <h3>Chennai</h3>
+                    <p>480+ listings</p>
+                </div>
+                <div class="city-card" onclick="searchCity('Kolkata')">
+                    <img src="https://destinationcompress.s3.ap-south-1.amazonaws.com/df3dd4f1-1c42-4208-a927-ec048f1ca841.jpg"
+                         alt="Kolkata" class="city-image"/>
+                    <h3>Kolkata</h3>
+                    <p>440+ listings</p>
+                </div>
+                <div class="city-card" onclick="searchCity('Chandigarh')">
+                    <img src="https://destinationcompress.s3.ap-south-1.amazonaws.com/8d85110d-6403-4713-9a93-3393855b0a36.jpg"
+                         alt="Chandigarh" class="city-image"/>
+                    <h3>Chandigarh</h3>
+                    <p>510+ listings</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block extra_js %}
+    <script src="{{ url_for('static',filename="/JS/search.js") }}"></script>
+{% endblock %}

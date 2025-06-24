@@ -1,16 +1,16 @@
 from flask import Blueprint, request, jsonify
-from models import Person, Property  # adjust if your model is elsewhere
-from extensions import db
 
-details_bp = Blueprint('details', __name__)
+from models import Person, Property
 
-@details_bp.route('/api/details')
+details_bp = Blueprint('details', __name__, url_prefix='/api')
+
+@details_bp.route('/details', methods=['GET'])
 def get_details():
     item_id = request.args.get('id')
     item_type = request.args.get('type')
 
     if not item_id or not item_type:
-        return jsonify({'error': 'Missing parameters'}), 400
+        return jsonify({'error': 'Missing parameters: id and type required'}), 400
 
     if item_type == 'people':
         person = Person.query.get(item_id)
@@ -27,6 +27,8 @@ def get_details():
             'description': person.description,
             'preferences': person.preferences,
             'contact': person.contact,
+            'profile_picture': getattr(person, 'profile_picture', None),
+            # 'government_id': getattr(person, 'government_id', None)
         })
 
     elif item_type == 'properties':
@@ -45,6 +47,8 @@ def get_details():
             'amenities': prop.amenities,
             'pictures': prop.pictures,
             'contact': prop.contact,
+            'gender_preference': getattr(prop, 'gender_preference', 'any'),
+            # 'government_id': getattr(prop, 'government_id', None)
         })
 
-    return jsonify({'error': 'Invalid type'}), 400
+    return jsonify({'error': 'Invalid type: must be "people" or "properties"'}), 400

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Rental App{% endblock %}</title>
+
+    <!-- Global Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/CSS/style.css') }}">
+    {% block extra_css %}
+        <!-- Additional CSS from child templates -->
+    {% endblock %}
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+<!-- Header / Navigation -->
+<nav class="navbar">
+    <div class="container">
+        <div class="nav-brand">
+            <a href="/"><h2>Roommate</h2></a>
+        </div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/add-listing">Add Listing</a>
+            <a href="/generate-form">Rent Agreement</a>
+            <a href="/profile">Profile</a>
+        </div>
+        <div class="nav-auth">
+            <button id="signIn" class="btn-primary" onclick="location.href='/login'">Login/Signup</button>
+        </div>
+    </div>
+</nav>
+
+<!-- Flash messages -->
+<div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+<!-- Page Content -->
+<div class="container mb-5">
+    {% block content %}{% endblock %}
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Roommate</h3>
+                <p>Your trusted platform for finding the perfect Roommate and rental properties.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/add-listing">Add Listing</a></li>
+                    <li><a href="/generate-form">Rent Agreement</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Roommate. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Global Scripts -->
+<script src="{{ url_for('static', filename='JS/auth.js') }}"></script>
+<script src="{{ url_for('static', filename='JS/script.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Page-specific Scripts -->
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>

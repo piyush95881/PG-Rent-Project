@@ -1,0 +1,256 @@
+{% extends "base.html" %}
+
+{% block title %}Add Listing - RentalApp{% endblock %}
+
+{% block content %}
+
+
+    <!-- Add Listing Options -->
+    <section class="listing-options">
+        <div class="container">
+            <div class="listing-header">
+                <h1>Add Your Listing</h1>
+                <p>Choose the type of listing you want to create</p>
+            </div>
+
+            <div class="options-grid">
+                <div class="listing-option-card" onclick="showListingForm('room')">
+                    <div class="option-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <div class="option-content">
+                        <h3>Need Flat/Roommate</h3>
+                        <p>Looking for a place to rent? or maybe a Partner<br>Post your requirements</p>
+                        <ul>
+                            <li>Specify your budget</li>
+                            <li>Preferred location</li>
+                            <li>Room requirements</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="listing-option-card" onclick="showListingForm('roommate')">
+                    <div class="option-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="option-content">
+                        <h3>Add Property</h3>
+                        <p>Owner of a Property? Want to find some tenants?</p>
+                        <ul>
+                            <li>Share your space details</li>
+                            <li>Tell Necessary preferences</li>
+                            <li>Connect with matches</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Listing Forms -->
+            <div id="roomForm" class="listing-form" style="display: none;">
+                <h2>Looking for Flat/Room</h2>
+                <form id="roomListingForm" method="POST" enctype="multipart/form-data" action="/people">
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" name="name" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender *</label>
+                            <select name="gender" id="gender" required>
+                                <option value="">Select</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">City *</label>
+                        <input type="text" name="city" id="city" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact">Contact Number *</label>
+                        <input type="text" name="contact" id="contact" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hobbies">Hobbies (comma separated)</label>
+                        <input type="text" name="hobbies" id="hobbies" placeholder="e.g., music, reading, gym">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Short Description</label>
+                        <textarea name="description" id="description" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="looking_for">Looking For *</label>
+                        <select name="looking_for" id="looking_for" required>
+                            <option value="">Select</option>
+                            <option value="room">Flat/Room</option>
+                            <option value="roommate">Roommate</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="smoking">Smoking Preference</label>
+                            <select name="smoking" id="smoking">
+                                <option value="">Select</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pets">Pet Friendly?</label>
+                            <select name="pets" id="pets">
+                                <option value="">Select</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="food">Food Preference</label>
+                            <select name="food" id="food">
+                                <option value="">Select</option>
+                                <option value="veg">Vegetarian</option>
+                                <option value="non-veg">Non-Vegetarian</option>
+                                <option value="any">Any</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profile_picture">Profile Picture</label>
+                        <input type="file" name="profile_picture" accept="image/*">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="government_id">Government ID</label>
+                        <input type="file" name="government_id" accept="image/*,application/pdf">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="hideListingForm()">Cancel</button>
+                        <button type="submit" class="btn-primary">Submit Person Listing</button>
+                    </div>
+                </form>
+            </div>
+
+
+            <div id="roommateForm" class="listing-form" style="display: none;">
+                <h2>Offering a Property / Room</h2>
+                <form id="roommateListingForm" method="POST" enctype="multipart/form-data" action="/properties">
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="name">Owner Name *</label>
+                            <label>
+                                <input type="text" name="name" required>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact">Contact Number *</label>
+                            <label>
+                                <input type="text" name="contact" required>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">City *</label>
+                        <label>
+                            <input type="text" name="city" required>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Full Address *</label>
+                        <label>
+                            <textarea name="address" rows="3" required></textarea>
+                        </label>
+                    </div>
+
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="rent_single">Rent (Single)</label>
+                            <label>
+                                <input type="number" name="rent_single" placeholder="e.g. 8000">
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="rent_double">Rent (Double)</label>
+                            <label>
+                                <input type="number" name="rent_double" placeholder="e.g. 6000">
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="rent_triple">Rent (Triple)</label>
+                            <label>
+                                <input type="number" name="rent_triple" placeholder="e.g. 5000">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="security_amount">Security Amount</label>
+                            <label>
+                                <input type="number" name="security_amount">
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="electricity_rate">Electricity Rate (per unit)</label>
+                            <label>
+                                <input type="number" name="electricity_rate" step="0.1">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Amenities</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="amenities" value="wifi"> WiFi</label>
+                            <label><input type="checkbox" name="amenities" value="furnished"> Furnished</label>
+                            <label><input type="checkbox" name="amenities" value="parking"> Parking</label>
+                            <label><input type="checkbox" name="amenities" value="gym"> Gym</label>
+                            <label><input type="checkbox" name="amenities" value="ac"> AC</label>
+                            <label><input type="checkbox" name="amenities" value="washing_machine"> Washing
+                                Machine</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender_preference">Preferred Gender</label>
+                        <label>
+                            <select name="gender_preference">
+                                <option value="any">Any</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="government_id">Upload Government ID *</label>
+                        <input type="file" name="government_id" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pictures">Property Pictures (Max 3, ≤1MB each)</label>
+                        <input type="file" name="pictures" accept="image/*" multiple>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="hideListingForm()">Cancel</button>
+                        <button type="submit" class="btn-primary">Submit Property Listing</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='JS/add-listing.js') }}"></script>
+{% endblock %}
