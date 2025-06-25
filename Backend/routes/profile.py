@@ -1,20 +1,24 @@
+import os
+
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
+
 from extensions import db
 from models import User
-from werkzeug.utils import secure_filename
-import os
+from routes.utils import save_file
 
 user_bp = Blueprint('user', __name__, url_prefix='/api/user')
 
-UPLOAD_FOLDER = 'uploads/user_ids'
+UPLOAD_FOLDER = '/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'pdf'}
 MAX_FILE_SIZE_MB = 1
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
+
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 @user_bp.route('/profile/update', methods=['PUT'])
 @jwt_required()
@@ -28,12 +32,13 @@ def update_profile():
         data = request.form.to_dict()
         hobbies = request.form.getlist('hobbies')
 
-        # Optional fields — update only if provided
+        # Name update (first + last name)
         if 'firstName' in data or 'lastName' in data:
             first_name = data.get('firstName', '').strip()
             last_name = data.get('lastName', '').strip()
             user.name = f"{first_name} {last_name}".strip()
 
+        # Other fields
         if 'email' in data:
             user.email = data['email']
         if 'phone' in data:
@@ -57,16 +62,12 @@ def update_profile():
         if hobbies:
             user.hobbies = hobbies
 
-        # Handle profile picture upload (optional)
-        profile_pic = request.files.get('profile_picture')
-        if profile_pic and allowed_file(profile_pic.filename):
-            if len(profile_pic.read()) > MAX_FILE_SIZE_MB * 1024 * 1024:
-                return jsonify({"msg": "File exceeds max 1MB"}), 400
-            profile_pic.seek(0)
-            filename = secure_filename(f"user_{user_id}_profile.{profile_pic.filename.rsplit('.', 1)[1].lower()}")
-            filepath = os.path.join(UPLOAD_FOLDER, filename)
-            profile_pic.save(filepath)
-            user.profile_picture = filepath
+        # Upload profile picture
+        profile_file = request.files.get('profile_picture')
+        if profile_file:
+            saved_path = save_file(profile_file, f"user_{user_id}_profile")
+            if saved_path:
+                user.profile_picture = saved_path
 
         db.session.commit()
 
@@ -127,9 +128,8 @@ def get_profile():
         "preferred_gender": getattr(user, 'preferred_gender', None),
         "bio": getattr(user, 'bio', None),
         "hobbies": user.hobbies,
-        "profile_picture": f"/uploads/{user.profile_picture}" if user.profile_picture else None
+        "profile_picture": f"{user.profile_picture}" if user.profile_picture else None
     }), 200
-
 
 
 @user_bp.route('/delete-account', methods=['DELETE'])

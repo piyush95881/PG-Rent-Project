@@ -28,53 +28,53 @@
                         </button>
                     </div>
 
-                    <div class="profile-stats">
-                        <div class="stat-item">
-                            <span class="stat-number">0</span>
-                            <span class="stat-label">Active Listings</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">0</span>
-                            <span class="stat-label">Profile Views</span>
-                        </div>
-                    </div>
+                    {#                    <div class="profile-stats">#}
+                    {#                        <div class="stat-item">#}
+                    {#                            <span class="stat-number">0</span>#}
+                    {#                            <span class="stat-label">Active Listings</span>#}
+                    {#                        </div>#}
+                    {#                        <div class="stat-item">#}
+                    {#                            <span class="stat-number">0</span>#}
+                    {#                            <span class="stat-label">Profile Views</span>#}
+                    {#                        </div>#}
+                    {#                    </div>#}
                 </div>
 
                 <div class="profile-form">
-                    <form id="profileForm">
+                    <form id="profileForm" enctype="multipart/form-data">
+                        {#                        <div class="profile-form">#}
                         <div class="form-section">
                             <h3>Personal Information</h3>
-
                             <div class="form-group-row">
                                 <div class="form-group">
                                     <label for="firstName">First Name *</label>
-                                    <input type="text" id="firstName" required>
+                                    <input type="text" id="firstName" name="first_name" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="lastName">Last Name *</label>
-                                    <input type="text" id="lastName" required>
+                                    <input type="text" id="lastName" name="last_name" required>
                                 </div>
                             </div>
 
                             <div class="form-group-row">
                                 <div class="form-group">
                                     <label for="email">Email *</label>
-                                    <input type="email" id="email" required>
+                                    <input type="email" id="email" name="email" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Phone Number *</label>
-                                    <input type="tel" id="phone" required>
+                                    <input type="tel" id="phone" name="contact" required>
                                 </div>
                             </div>
 
                             <div class="form-group-row">
                                 <div class="form-group">
                                     <label for="age">Age</label>
-                                    <input type="number" id="age" min="18" max="100">
+                                    <input type="number" id="age" name="age" min="18" max="100">
                                 </div>
                                 <div class="form-group">
                                     <label for="gender">Gender</label>
-                                    <select id="gender">
+                                    <select id="gender" name="gender">
                                         <option value="">Select Gender</option>
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
@@ -86,21 +86,19 @@
 
                         <div class="form-section">
                             <h3>Professional Information</h3>
-
                             <div class="form-group-row">
                                 <div class="form-group">
                                     <label for="occupation">Occupation</label>
-                                    <input type="text" id="occupation" placeholder="e.g., Software Engineer">
+                                    <input type="text" id="occupation" name="occupation">
                                 </div>
                                 <div class="form-group">
                                     <label for="company">Company</label>
-                                    <input type="text" id="company">
+                                    <input type="text" id="company" name="company">
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label for="income">Monthly Income (₹)</label>
-                                <select id="income">
+                                <select id="income" name="income">
                                     <option value="">Select Income Range</option>
                                     <option value="20000-40000">₹20,000 - ₹40,000</option>
                                     <option value="40000-60000">₹40,000 - ₹60,000</option>
@@ -112,48 +110,34 @@
 
                         <div class="form-section">
                             <h3>Preferences</h3>
-
                             <div class="form-group">
                                 <label for="currentCity">Current City</label>
-                                <input type="text" id="currentCity">
+                                <input type="text" id="currentCity" name="city">
                             </div>
-
                             <div class="form-group">
                                 <label>Preferred Roommate Gender</label>
                                 <div class="radio-group">
-                                    <label><input type="radio" name="preferredGender" value="male"> Male</label>
-                                    <label><input type="radio" name="preferredGender" value="female"> Female</label>
-                                    <label><input type="radio" name="preferredGender" value="any"> Any</label>
+                                    <label><input type="radio" name="preferred_gender" value="male"> Male</label>
+                                    <label><input type="radio" name="preferred_gender" value="female">
+                                        Female</label>
+                                    <label><input type="radio" name="preferred_gender" value="any"> Any</label>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <label>Lifestyle Preferences</label>
-                                <div class="checkbox-group">
-                                    <label><input type="checkbox" value="non-smoker"> Non-Smoker</label>
-                                    <label><input type="checkbox" value="vegetarian"> Vegetarian</label>
-                                    <label><input type="checkbox" value="pet-friendly"> Pet Friendly</label>
-                                    <label><input type="checkbox" value="early-riser"> Early Riser</label>
-                                    <label><input type="checkbox" value="night-owl"> Night Owl</label>
-                                    <label><input type="checkbox" value="social"> Social Person</label>
-                                </div>
-                            </div>
-
                             <div class="form-group">
                                 <label for="bio">About Me</label>
-                                <textarea id="bio" rows="4"
-                                          placeholder="Tell us about yourself, your hobbies, lifestyle..."></textarea>
+                                <textarea id="bio" name="bio" rows="4"></textarea>
                             </div>
                         </div>
 
                         <div class="form-actions">
                             <button type="button" class="btn-secondary">Cancel</button>
                             <button type="submit" class="btn-primary">Save Profile</button>
-                            <button id="deleteAccountBtn" type="button" class="btn-danger" style="margin-left: auto;">
-                                Delete
-                                Account
+                            <button id="deleteAccountBtn" type="button" class="btn-danger"
+                                    style="margin-left: auto;">
+                                Delete Account
                             </button>
                         </div>
+                        {#                        </div>#}
                     </form>
                 </div>
             </div>

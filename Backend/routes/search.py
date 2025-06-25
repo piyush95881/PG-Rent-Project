@@ -1,8 +1,10 @@
 from flask import Blueprint, request, jsonify
-from models import Person, Property
+
 from extensions import db
+from models import Person, Property
 
 search_bp = Blueprint('search', __name__)
+
 
 @search_bp.route('/people', methods=['GET'])
 def get_people():
@@ -42,6 +44,9 @@ def get_people():
         "hobbies": p.hobbies,
         "description": p.description,
         "preferences": p.preferences,
+        "city": p.city,
+        "budget": p.budget,
+        "profile_picture": p.profile_picture
     } for p in people.items]
 
     return jsonify({

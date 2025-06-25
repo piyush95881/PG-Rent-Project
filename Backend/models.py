@@ -1,7 +1,9 @@
-from extensions import db
-from werkzeug.security import generate_password_hash, check_password_hash
-from sqlalchemy.dialects.postgresql import ARRAY, JSON, NUMERIC
 from datetime import datetime, UTC
+
+from sqlalchemy.dialects.postgresql import ARRAY, JSON, NUMERIC
+from werkzeug.security import generate_password_hash, check_password_hash
+
+from extensions import db
 
 
 class User(db.Model):
@@ -49,6 +51,7 @@ class Person(db.Model):
     budget = db.Column(db.Integer)
     hobbies = db.Column(ARRAY(db.String))
     description = db.Column(db.Text)
+    address = db.Column(db.String(200))
 
     preferences = db.Column(JSON)  # smoking, pets, food
     looking_for = db.Column(db.String(20))  # room / roommate

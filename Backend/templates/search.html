@@ -4,6 +4,7 @@
 
 {% block extra_css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/search.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='CSS/card.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -15,13 +16,7 @@
             <p class="search-subtitle">Find your perfect match with advanced filters</p>
         </div>
 
-        <!-- Tabs -->
-        {#        <div class="tab-bar">#}
-        {#            <button class="tab-btn active" data-type="people">People</button>#}
-        {#            <button class="tab-btn" data-type="properties">Properties</button>#}
-        {#        </div>#}
 
-        <!-- Advanced Search -->
         <section class="advanced-search fade-in">
             <h2 class="search-section-title">🔍 Advanced Search</h2>
 
@@ -42,6 +37,7 @@
                     <div class="filter-group">
                         <label class="filter-label">Gender Preference</label>
                         <label for="genderInput"></label><select class="filter-select" id="genderInput">
+                        <option value="" selected disabled>Select gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                         <option value="Any">Any</option>
@@ -51,6 +47,7 @@
                     <div class="filter-group">
                         <label class="filter-label">Looking For</label>
                         <label for="lookingInput"></label><select class="filter-select" id="lookingInput">
+                        <option value="" selected disabled>Select</option>
                         <option value="Roommate">Roommate</option>
                         <option value="Room">Room</option>
                     </select>
@@ -95,7 +92,7 @@
                 </div>
             </div>
 
-            <div class="results-wrapper" id="resultsContainer">
+            <div class="card-grid" id="resultsContainer">
                 <h3>Ready to search</h3>
                 <p>Enter your search criteria above and click "Apply Filters" to find roommates and rooms.</p>
             </div>

@@ -1,35 +1,46 @@
 {% extends "base.html" %}
 
 {% block title %}Add Listing - RentalApp{% endblock %}
-{#{% block extra_css %}#}
-{#    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/details.css') }}">#}
-{#{% endblock %}#}
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/details.css') }}">
+{% endblock %}
 {% block content %}
 
     <div id="navbar-container"></div>
-    <div class="container">
-        <div class="image-section" id="image-section">
-            <!-- Images will be dynamically inserted -->
-        </div>
 
-        <div class="info-section" id="info-section">
-            <h1 class="title" id="name">Loading...</h1>
-            <p class="subtitle" id="looking_for"></p>
-            <p class="description" id="description"></p>
-            <div class="features" id="hobbies"></div>
-            <div class="features" id="preferences"></div>
-            <div class="pricing">
-                <p class="old-price" id="old-price"></p>
-                <p class="new-price" id="new-price"></p>
+    <div class="details-container">
+        <div class="main-card">
+            <div class="left-section" id="image-section">
+                <!-- Image/Profile picture -->
             </div>
-            <span class="badge" id="badge"></span>
-            <button class="contact-btn" id="contact">Contact</button>
-            <div class="meta">
-                <span id="city"></span>
-                <span id="gender"></span>
+
+            <div class="right-section">
+                <h2 id="name">Loading...</h2>
+                <p id="location" class="location">📍 <span>City, India</span></p>
+
+                <div class="basic-info" id="basic-info">
+                    <!-- Gender, Rent, Preferences -->
+                </div>
+
+                <div class="features" id="features-container">
+                    <h3>Amenities / Preferences</h3>
+                    <div id="features" class="feature-icons"></div>
+                </div>
+
+                <div class="highlights" id="highlights">
+                    <!-- Extra tags like working full time, age, etc -->
+                </div>
+
+                <div class="description-block">
+                    <h3>Description</h3>
+                    <p id="description">Loading...</p>
+                </div>
+
+                <button id="contact" class="contact-btn">Contact</button>
             </div>
         </div>
     </div>
+
 
 
 {% endblock %}

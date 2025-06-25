@@ -5,39 +5,44 @@ from routes.utils import save_file
 
 upload_bp = Blueprint('upload', __name__)
 
+
 @upload_bp.route('/people', methods=['POST'])
 def create_person():
-        name = request.form.get('name')
-        gender = request.form.get('gender')
-        city = request.form.get('city')
-        contact = request.form.get('contact')
-        hobbies = request.form.get('hobbies', '').split(',')
-        description = request.form.get('description')
-        looking_for = request.form.get('looking_for')
-        preferences = {
-            "smoking": request.form.get("smoking"),
-            "pets": request.form.get("pets"),
-            "food": request.form.get("food")
-        }
+    name = request.form.get('name')
+    gender = request.form.get('gender')
+    city = request.form.get('city')
+    contact = request.form.get('contact')
+    hobbies = request.form.get('hobbies', '').split(',')
+    description = request.form.get('description')
+    looking_for = request.form.get('looking_for')
+    age = request.form.get('age')
+    occupation = request.form.get('occupation')
+    budget = request.form.get('budget')
+    preferences = {
+        "smoking": request.form.get("smoking"),
+        "pets": request.form.get("pets"),
+        "food": request.form.get("food")
+    }
 
-        # Save Person first so we get ID
-        person = Person(
-            name=name, gender=gender, city=city, contact=contact,
-            hobbies=hobbies, description=description,
-            looking_for=looking_for, preferences=preferences
-        )
-        db.session.add(person)
-        db.session.commit()
+    # Save Person first so we get ID
+    person = Person(
+        name=name, gender=gender, city=city, contact=contact,
+        hobbies=hobbies, description=description,
+        looking_for=looking_for, preferences=preferences, age=age,
+        occupation=occupation, budget=budget
+    )
+    db.session.add(person)
+    db.session.commit()
 
-        # Now save files using person.id
-        profile_file = request.files.get('profile_picture')
-        gov_id_file = request.files.get('government_id')
+    # Now save files using person.id
+    profile_file = request.files.get('profile_picture')
+    gov_id_file = request.files.get('government_id')
 
-        person.profile_picture = save_file(profile_file, f"person_{person.id}_profile")
-        person.government_id = save_file(gov_id_file, f"person_{person.id}_govid")
+    person.profile_picture = save_file(profile_file, f"person_{person.id}_profile")
+    person.government_id = save_file(gov_id_file, f"person_{person.id}_govid")
 
-        db.session.commit()
-        return {"message": "Person uploaded successfully"}
+    db.session.commit()
+    return {"message": "Person uploaded successfully"}
 
 
 @upload_bp.route('/properties', methods=['POST'])

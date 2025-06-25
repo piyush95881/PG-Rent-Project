@@ -12,9 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// Profile handling
-document.getElementById('profileForm').addEventListener('submit', handleProfileUpdate);
-
 function loadProfileData() {
     console.log('Fetching profile data...');
 
@@ -45,7 +42,10 @@ function loadProfileData() {
             document.getElementById('income').value = data.income || '';
 
             if (data.profile_picture) {
-                document.getElementById('profileImage').src = `/uploads/${data.profile_picture}`;
+                document.getElementById('profileImage').src = data.profile_picture.startsWith('/')
+                    ? data.profile_picture
+                    : `/${data.profile_picture}`;
+
             }
         })
         .catch(error => {
@@ -72,7 +72,7 @@ function handleProfileUpdate(e) {
     formData.append('company', document.getElementById('company').value);
     formData.append('income', document.getElementById('income').value);
 
-    const fileInput = document.getElementById('profileImageInput');
+    const fileInput = document.getElementById('imageUpload');
     if (fileInput && fileInput.files[0]) {
         formData.append('profile_picture', fileInput.files[0]);
     }
