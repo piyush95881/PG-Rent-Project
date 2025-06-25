@@ -4,8 +4,8 @@ __pycache__/
 *.sqlite3
 
 # Environment
-.env
-venv/
+../.env
+Backend/venv/
 .venv/
 
 # IDEs
