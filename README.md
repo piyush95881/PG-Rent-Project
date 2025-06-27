@@ -28,8 +28,8 @@ Roommate is a modern web application that helps users find roommates, rooms, and
 ### 1. 📁 Clone the Repository
 
 ```bash
-https://github.com/piyush95881/PG-Rent-Project.git
-cd PG-Rent-Project
+https://github.com/piyush95881/Roommate.git
+cd Roommate
 ```
 
 ---
