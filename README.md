@@ -1,6 +1,6 @@
-# 🏠 FlatMate – Find Your Perfect Roommate or Rental
+# 🏠 Roommate – Find Your Perfect Roommate or Rental
 
-FlatMate is a modern web application that helps users find roommates, rooms, and rental properties with ease. It allows listing properties, matching with flatmates, and even generating rental agreements.
+Roommate is a modern web application that helps users find roommates, rooms, and rental properties with ease. It allows listing properties, matching with flatmates, and even generating rental agreements.
 
 ## 🚀 Features
 
@@ -28,8 +28,8 @@ FlatMate is a modern web application that helps users find roommates, rooms, and
 ### 1. 📁 Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/flatmate-app.git
-cd flatmate-app
+https://github.com/piyush95881/PG-Rent-Project.git
+cd PG-Rent-Project
 ```
 
 ---
