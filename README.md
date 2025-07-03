@@ -1,6 +1,7 @@
 # 🏠 Roommate – Find Your Perfect Roommate or Rental
 
-Roommate is a modern web application that helps users find roommates, rooms, and rental properties with ease. It allows listing properties, matching with flatmates, and even generating rental agreements.
+Roommate is a modern web application that helps users find roommates, rooms, and rental properties with ease. It allows
+listing properties, matching with flatmates, and even generating rental agreements.
 
 ## 🚀 Features
 
@@ -15,11 +16,11 @@ Roommate is a modern web application that helps users find roommates, rooms, and
 
 ## 📦 Tech Stack
 
-| Frontend             | Backend            | Other              |
-|----------------------|--------------------|---------------------|
-| HTML, CSS, JS        | Flask (Python)     | Flask-Mail, JWT     |
-| Bootstrap / Tailwind | Flask Blueprints   | WeasyPrint (PDF)    |
-| Vanilla JS           | RESTful APIs       | SQLite / MongoDB    |
+| Frontend             | Backend          | Other            |
+|----------------------|------------------|------------------|
+| HTML, CSS, JS        | Flask (Python)   | Flask-Mail, JWT  |
+| Bootstrap / Tailwind | Flask Blueprints | WeasyPrint (PDF) |
+| Vanilla JS           | RESTful APIs     | SQLite / MongoDB |
 
 ---
 
@@ -28,7 +29,7 @@ Roommate is a modern web application that helps users find roommates, rooms, and
 ### 1. 📁 Clone the Repository
 
 ```bash
-https://github.com/piyush95881/Roommate.git
+git clone https://github.com/piyush95881/Roommate.git
 cd Roommate
 ```
 
@@ -69,15 +70,15 @@ pip install Flask Flask-Mail Flask-JWT-Extended WeasyPrint
 Create a `.env` file in the Backend root directory and add:
 
 ```ini
-FLASK_APP=app.py
-FLASK_ENV=development
-SECRET_KEY=your_secret_key
-JWT_SECRET_KEY=your_jwt_secret
-MAIL_SERVER=smtp.gmail.com
-MAIL_PORT=587
-MAIL_USERNAME=your_email@gmail.com
-MAIL_PASSWORD=your_password_or_app_password
-MAIL_USE_TLS=True
+FLASK_APP = app.py
+FLASK_ENV = development
+SECRET_KEY = your_secret_key
+JWT_SECRET_KEY = your_jwt_secret
+MAIL_SERVER = smtp.gmail.com
+MAIL_PORT = 587
+MAIL_USERNAME = your_email@gmail.com
+MAIL_PASSWORD = your_password_or_app_password
+MAIL_USE_TLS = True
 ```
 
 ---
@@ -95,13 +96,15 @@ By default, the app will be available at:
 
 ## 💽 Frontend Structure
 
-The frontend is served with Flask using templates and static files.
+The frontend is served with Flask using templates and static files and header, footer, Navbar are in a common file
+base.html
 
 **Key Pages:**
 
-- `/` – Home Page
-- `/find-roommates` – Match search page
-- `/details` – Dynamic detail page
+- `/` – Home Page, index.html
+- `/login` – Login/Signup Page, login.html
+- `/find-roommates` – Match search page, search.html
+- `/details` – Dynamic detail page, details.html
 - `/generate-agreement` – PDF generation route (POST)
 
 ---
@@ -112,15 +115,24 @@ To test rental agreement creation:
 
 1. Login and get your JWT token.
 2. Send a POST request to `/generate-agreement` with JSON:
+
 ```json
 {
-  "owner": {...},
-  "tenant": {...},
-  "property": {...},
+  "owner": {
+    ...
+  },
+  "tenant": {
+    ...
+  },
+  "property": {
+    ...
+  },
   "terms": {
     "email": "test@example.com"
   },
-  "annexures": [...]
+  "annexures": [
+    ...
+  ]
 }
 ```
 
@@ -149,9 +161,6 @@ flatmate-app/
 Pull requests are welcome! For major changes, open an issue first to discuss what you’d like to change.
 
 ---
-
-
-
 
 ## System Requirements for WeasyPrint
 
