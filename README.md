@@ -39,6 +39,8 @@ cd Roommate
 ```bash
 python -m venv venv
 source venv/bin/activate   # On Windows: venv\Scripts\activate
+
+// Also Setup your python intrepreter to venv/scripts/python.exe
 ```
 
 ---
@@ -46,7 +48,7 @@ source venv/bin/activate   # On Windows: venv\Scripts\activate
 ### 3. 📦 Install Backend Dependencies
 
 ```bash
-pip install -r requirements.txt
+pip install -r Backend/requirements.txt
 ```
 
 If `requirements.txt` is missing, install manually:
@@ -64,7 +66,7 @@ pip install Flask Flask-Mail Flask-JWT-Extended WeasyPrint
 
 ### 4. ⚙️ Set Environment Variables
 
-Create a `.env` file in the root directory and add:
+Create a `.env` file in the Backend root directory and add:
 
 ```ini
 FLASK_APP=app.py
