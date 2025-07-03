@@ -8,10 +8,14 @@ from extensions import db, jwt, mail, migrate
 from routes import *
 
 load_dotenv()
+
+
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, template_folder="../Frontend/templates", static_folder="../Frontend/static",
+                static_url_path="/static", instance_relative_config=True)
     app.config.from_object(Config)
-    CORS(app, supports_credentials=True) #CORS (Cross-Origin Resource Sharing). supports_credentials=True allows cookies or HTTP auth headers to be sent across origins.
+    CORS(app,
+         supports_credentials=True)  # CORS (Cross-Origin Resource Sharing). supports_credentials=True allows cookies or HTTP auth headers to be sent across origins.
 
     db.init_app(app)
     jwt.init_app(app)
@@ -22,7 +26,7 @@ def create_app():
     app.register_blueprint(agreement_bp, url_prefix='/api/agreement')
     app.register_blueprint(search_bp, url_prefix='/api/search')
     app.register_blueprint(upload_bp, url_prefix='/api/upload')
-    app.register_blueprint(user_bp,url_prefix='/api/user')
+    app.register_blueprint(user_bp, url_prefix='/api/user')
     app.register_blueprint(details_bp)
     app.register_blueprint(views_bp)
 
@@ -36,4 +40,3 @@ def create_app():
         return jsonify({"msg": str(e)}), 401
 
     return app
-
